@@ -22,6 +22,11 @@ const routes = [
         name: 'signupPage',
         component: () => import('../components/signupPage.vue')
     },
+    {
+        path: '/detail',
+        name: 'detailConcert',
+        component: () => import('../components/detailConcert.vue')
+    }
     
 
 ]

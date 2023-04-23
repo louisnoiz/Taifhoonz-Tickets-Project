@@ -11,7 +11,7 @@
           <div class="flex justify-center items-center">
             <button type="submit" class="w-1/2 p-2 rounded-xl drop-shadow-lg bg-orange-300">log in</button>
           </div>
-          <router-link to="/loginpage">Sign up</router-link>
+          <router-link to="/signuppage">Sign up</router-link>
         </form>
       </div>
 

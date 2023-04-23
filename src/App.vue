@@ -3,7 +3,7 @@
     <nav class="flex items-center justify-between flex-wrap bg-rose-500 p-6">
   <div class="flex items-center flex-shrink-0 text-white mr-6">
     <img class="fill-current h-8 w-8 mr-2" src="https://cdn-icons-png.flaticon.com/512/6793/6793242.png" alt="">
-    <a href="#responsive-header" class="font-semibold text-xl tracking-tight text-slate-900">
+    <a href="/" class="font-semibold text-xl tracking-tight text-slate-900">
       Taifhoonz Tickets
       </a>
   </div>
@@ -14,13 +14,23 @@
   </div>
   <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     <div class="text-sm lg:flex-grow">
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-slate-900 hover:text-white mr-4">
-        Category
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-slate-900 hover:text-white mr-4">
+        <router-link to="/">Home</router-link>
       </a>
-      <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-slate-900 hover:text-white mr-4">
-        Examples
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-slate-900 hover:text-white mr-4">
+        <router-link to="/loginpage">Login</router-link>
       </a>
-      <router-link to="/helloworld">Hello world</router-link>
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-slate-900 hover:text-white mr-4">
+        <router-link to="/signuppage">Signup</router-link>
+      </a>
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-slate-900 hover:text-white mr-4">
+        <router-link to="/detail">Detail</router-link>
+      </a>
+      
+      
+    </div>
+    <div>
+      Username
     </div>
   </div>
 </nav>
