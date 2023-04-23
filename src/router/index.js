@@ -11,7 +11,18 @@ const routes = [
         path: '/helloworld',
         name: 'Hello World',
         component: () => import('../components/HelloWorld.vue')
-    }
+    },
+    {
+        path: '/loginpage',
+        name: 'loginPage',
+        component: () => import('../components/loginPage.vue')
+    },
+    {
+        path: '/signuppage',
+        name: 'signupPage',
+        component: () => import('../components/signupPage.vue')
+    },
+    
 
 ]
 

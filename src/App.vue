@@ -3,7 +3,9 @@
     <nav class="flex items-center justify-between flex-wrap bg-rose-500 p-6">
   <div class="flex items-center flex-shrink-0 text-white mr-6">
     <img class="fill-current h-8 w-8 mr-2" src="https://cdn-icons-png.flaticon.com/512/6793/6793242.png" alt="">
-    <span class="font-semibold text-xl tracking-tight text-slate-900">Taifhoonz Tickets</span>
+    <a href="#responsive-header" class="font-semibold text-xl tracking-tight text-slate-900">
+      Taifhoonz Tickets
+      </a>
   </div>
   <div class="block lg:hidden">
     <button class="flex items-center px-3 py-2 border rounded text-orange-200 border-orange-400 hover:text-white hover:border-white">
