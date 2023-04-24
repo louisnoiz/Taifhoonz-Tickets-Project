@@ -26,6 +26,11 @@ const routes = [
         path: '/detail',
         name: 'detailConcert',
         component: () => import('../components/detailConcert.vue')
+    },
+    {
+        path: '/selectzone',
+        name: 'zoneArea',
+        component: () => import('../components/selectZoneArea.vue')
     }
     
 

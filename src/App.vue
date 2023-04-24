@@ -26,7 +26,9 @@
       <a class="block mt-4 lg:inline-block lg:mt-0 text-slate-900 hover:text-white mr-4">
         <router-link to="/detail">Detail</router-link>
       </a>
-      
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-slate-900 hover:text-white mr-4">
+        <router-link to="/selectzone">ZoneArea</router-link>
+      </a>
       
     </div>
     <div>
