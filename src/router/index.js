@@ -36,6 +36,11 @@ const routes = [
         path: '/payment',
         name: 'buyTicket',
         component: () => import('../components/paymentTicket.vue')
+    },
+    {
+        path: '/getticket',
+        name: 'getTicket',
+        component: () => import('../components/getTicket.vue')
     }
 
 ]

@@ -31,7 +31,7 @@
                     <div class="relative inline-block text-left">
                         <div>
                             <button @click="isOpen = !isOpen" type="button"
-                                class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-red-500 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-6 py-4 bg-red-500 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 id="rounds-menu" aria-haspopup="true" aria-expanded="true">
                                 {{ selectedRound.label }}
                                 <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -44,7 +44,7 @@
                         </div>
 
                         <div v-show="isOpen"
-                            class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-red-500 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                            class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-red-500 ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="rounds-menu">
                             <div class="py-1" role="none">
                                 <a v-for="round in rounds" :key="round.value" @click="selectRound(round)"
