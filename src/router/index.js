@@ -31,8 +31,12 @@ const routes = [
         path: '/selectzone',
         name: 'zoneArea',
         component: () => import('../components/selectZoneArea.vue')
+    },
+    {
+        path: '/payment',
+        name: 'buyTicket',
+        component: () => import('../components/paymentTicket.vue')
     }
-    
 
 ]
 
