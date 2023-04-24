@@ -41,7 +41,17 @@ const routes = [
         path: '/getticket',
         name: 'getTicket',
         component: () => import('../components/getTicket.vue')
-    }
+    },
+    {
+        path: '/myticket',
+        name: 'AllTicket',
+        component: () => import('../components/myTickets.vue')
+    },
+    {
+        path: '/editprofile',
+        name: 'editProfile',
+        component: () => import('../components/editProfile.vue')
+    },
 
 ]
 

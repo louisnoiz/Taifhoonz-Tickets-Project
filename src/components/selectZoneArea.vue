@@ -1,7 +1,7 @@
 <template>
     <div class="container mx-auto justify-center items-center">
 
-        <div class="grid grid-rows gap-4 border rounded-xl drop-shadow-lg border-[#c33838] px-20 mt-2">
+        <div class="grid grid-rows gap-4 border rounded-xl drop-shadow-lg border-[#c33838] px-20 mt-2 bg-gray-50">
             <div class="flex py-8">
                 <div class="w-1/2">
                     <div class="flex flex-col items-center">

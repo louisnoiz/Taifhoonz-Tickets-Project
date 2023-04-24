@@ -34,7 +34,12 @@
       </a>
     </div>
     <div>
-      Username
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-slate-900 hover:text-white mr-4">
+        <router-link to="/myticket"><img class="ticketbtn" src="https://cdn.discordapp.com/attachments/1023958942554005526/1100124527704428575/ticket.png" alt=""></router-link>
+      </a>
+      <a class="block mt-4 lg:inline-block lg:mt-0 text-slate-900 hover:text-white mr-4">
+        <router-link to="/editprofile">Username</router-link>
+      </a>
     </div>
   </div>
 </nav>
@@ -64,5 +69,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  
+}
+body {
+  background-color:rgb(253, 252, 236);
+}
+.ticketbtn {
+  width: 30px;
+  height: 25px;
 }
 </style>
