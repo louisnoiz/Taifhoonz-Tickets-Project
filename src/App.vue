@@ -33,7 +33,7 @@
         <router-link to="/payment">Payment</router-link>
       </a>
     </div>
-    <div>
+    <div class="flex justify-center items-center">
       <a class="block mt-4 lg:inline-block lg:mt-0 text-slate-900 hover:text-white mr-4">
         <router-link to="/myticket"><img class="ticketbtn" src="https://cdn.discordapp.com/attachments/1023958942554005526/1100124527704428575/ticket.png" alt=""></router-link>
       </a>
@@ -76,6 +76,6 @@ body {
 }
 .ticketbtn {
   width: 30px;
-  height: 25px;
+  height: 30px;
 }
 </style>
