@@ -4,7 +4,7 @@
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <img
           class="fill-current h-8 w-8 mr-2"
-          src="https://cdn-icons-png.flaticon.com/512/6793/6793242.png"
+          src="./assets/taifhoonz_logo.png"
           alt=""
         />
         <a href="/" class="font-semibold text-xl tracking-wide">
@@ -67,7 +67,7 @@
             <router-link to="/myticket"
               ><img
                 class="ticketbtn"
-                src="https://cdn.discordapp.com/attachments/1023958942554005526/1100124527704428575/ticket.png"
+                src="./assets/ticketnavbar_logo.png"
                 alt=""
             /></router-link>
           </a>

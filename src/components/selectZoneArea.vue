@@ -17,28 +17,28 @@
                         <div class="zone ml-4 text-xl">
                             <div class="flex">
                             <img class="colorZone"
-                                src="https://htmlcolorcodes.com/assets/images/colors/light-green-color-solid-background-1920x1080.png"
+                                src="../assets/zonegreen.png"
                                 alt="">
                             <p>&ensp; Zone (Green) : 4,800 THB</p>
                         </div>
                         <br>
                         <div class="flex">
                             <img class="colorZone"
-                                src="https://htmlcolorcodes.com/assets/images/colors/sky-blue-color-solid-background-1920x1080.png"
+                                src="../assets/zpnebluecolor.png"
                                 alt="">
                             <p>&ensp; Zone (Blue) : 4,500 THB</p>
                         </div>
                         <br>
                         <div class="flex">
                             <img class="colorZone"
-                                src="https://htmlcolorcodes.com/assets/images/colors/periwinkle-color-solid-background-1920x1080.png"
+                                src="../assets/zonepurple.png"
                                 alt="">
                             <p>&ensp; Zone (Purple) : 3,500 THB</p>
                         </div>
                         <br>
                         <div class="flex">
                             <img class="colorZone"
-                                src="https://htmlcolorcodes.com/assets/images/colors/burnt-sienna-color-solid-background-1920x1080.png"
+                                src="../assets/zoneorange.png"
                                 alt="">
                             <p>&ensp; Zone (Orange) : 2,500 THB</p>
                         </div>
