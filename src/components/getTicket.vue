@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto">
-        <div class="grid grid-rows gap-4 border rounded-xl drop-shadow-lg border-[#c33838] mt-2 bg-gray-50">
+        <div class="grid grid-rows gap-4 border rounded-xl drop-shadow-lg border-[#c33838] mt-2">
             <h1 class="font-bold text-3xl mt-2">รายการชำระเงิน</h1>
             <div class="flex py-8">
                 <div class="w-1/2 flex flex-col justify-center items-center">
