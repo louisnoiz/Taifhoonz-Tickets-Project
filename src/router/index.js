@@ -47,6 +47,11 @@ const routes = [
         name: 'AllTicket',
         component: () => import('../components/myTickets.vue')
     },
+    {
+        path: '/allConcert',
+        name: 'AllConcerts',
+        component: () => import('../components/allConcert.vue')
+    },
 
 ]
 

@@ -1,35 +1,59 @@
 <template class="w-full h-screen">
-  <div class="container mx-auto flex justify-center items-center">
-    <div class="grid grid-cols-4 my-10 gap-8">
-      <section class="section" id="app">
-        <div class="content">
-          <div class="flex flex-wrap">
-            <div class="ml-auto">
-              <div
-                class="card max-w-xs rounded overflow-hidden shadow-lg bg-red-200 w-auto"
-              >
-                <img
-                  class="imageConcert w-full"
-                  src="https://res.theconcert.com/w_375,h_499,c_thumb/027c5eaa2474e2ed2093030ebf823a2d1/aw-resize-the-concert-01.jpg"
-                  alt="Sunset in the mountains"
-                />
-                <div class="px-6 py-4">
-                  <div class="font-bold text-l mb-2">
-                    LEO presents ‘Move On จนโคจรมาเจอกัน คอนเสิร์ต’
-                  </div>
-                  <router-link to="/detail">Details</router-link>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div class="bg-[#2c2c38] w-full">
+    <div class="w-full h-screen" :style="cssProps">
+      <div
+        class="container mx-auto flex flex-row gap-5 justify-center items-center"
+      >
+        <div class="w-full py-36 px-5 my-10 flex flex-col gap-3 text-left">
+          <p class="text-white text-5xl font-semibold tracking-wide">
+            RADWIMPS Asian Tour 2023 in Bangkok 
+          </p>
+          <p class="text-white tracking-wide mt-3">Please be informed that service fee will be adjusted from 20 baht per ticket to 30 baht starting from April 1st, 2023 onwards . . .</p>
+          <p class="text-white tracking-wide">Show Date : Thursday 27 July 2023</p>
+          <p class="text-white tracking-wide">Venue : Union Hall, Union Mall</p>
+          <p class="text-white tracking-wide">Ticket Price : 3,400 / 2,600</p>
+          <a href="#" class="w-36 mt-3 border-2 border-orange-500 hover:bg-orange-500/10 text-orange-500 rounded text-sm text-center p-2 tracking-wide">
+            COMING SOON
+          </a>
         </div>
-      </section>
+        <div class="w-full my-10 flex justify-center">
+          <img class="w-96 h-auto rounded" src="../assets/concert.png" alt="Image" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
+<script>
+// import { RouterLink } from "vue-router";
+// import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+  name: "homePage",
+  // components: {
+  //   // HelloWorld
+  //   RouterLink,
+  // },
+  data() {
+    return {
+      cssProps: {
+        backgroundImage: `url(${require("../assets/wall.png")})`,
+      },
+    };
+  },
+  methods: {},
+};
+</script>
+
 <style>
-.card {
-  width: 75%;
+/* .card {
+  width: 100%;
   height: 100%;
+} */
+img {
+  width: 20%;
+  height: 20%;
+}
+.app {
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="flex items-center justify-between flex-wrap bg-rose-500 p-6 ">
+    <nav class="flex items-center justify-between flex-wrap bg-[#2c2c38] border-b border-b-gray-500 p-6 ">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <img
           class="fill-current h-8 w-8 mr-2"
@@ -58,6 +58,11 @@
             class="block mt-4 lg:inline-block lg:mt-0 hover:text-slate-900 mr-4"
           >
             <router-link to="/payment">Payment</router-link>
+          </a>
+          <a
+            class="block mt-4 lg:inline-block lg:mt-0 hover:text-slate-900 mr-4"
+          >
+            <router-link to="/allConcert">Concert</router-link>
           </a>
         </div>
         <div class="flex justify-center items-center">
