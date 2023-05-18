@@ -23,12 +23,12 @@ const routes = [
         component: () => import('../components/signupPage.vue')
     },
     {
-        path: '/detail',
+        path: '/detail/:concertId',
         name: 'detailConcert',
         component: () => import('../components/detailConcert.vue')
     },
     {
-        path: '/selectzone',
+        path: '/selectzone/:concertId',
         name: 'zoneArea',
         component: () => import('../components/selectZoneArea.vue')
     },
@@ -38,7 +38,7 @@ const routes = [
         component: () => import('../components/paymentTicket.vue')
     },
     {
-        path: '/getticket',
+        path: '/getticket/:ticketId',
         name: 'getTicket',
         component: () => import('../components/getTicket.vue')
     },

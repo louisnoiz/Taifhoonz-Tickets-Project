@@ -47,12 +47,12 @@
           <a
             class="block mt-4 lg:inline-block lg:mt-0 hover:text-slate-900 mr-4"
           >
-            <router-link to="/detail">Detail</router-link>
+            <router-link to="/detail/1">Detail</router-link>
           </a>
           <a
             class="block mt-4 lg:inline-block lg:mt-0 hover:text-slate-900 mr-4"
           >
-            <router-link to="/selectzone">ZoneArea</router-link>
+            <router-link to="/selectzone/1">ZoneArea</router-link>
           </a>
           <a
             class="block mt-4 lg:inline-block lg:mt-0 hover:text-slate-900 mr-4"
@@ -87,7 +87,7 @@
       </div>
     </nav>
     <div v-if="this.modal">
-      <div class="w-full h-max flex justify-end items-start absolute">
+      <div class="w-full h-max flex justify-end items-start absolute z-10">
         <div
           class="container w-1/5 mt-1 mr-1 drop-shadow-lg border tracking-wide text-center rounded-lg bg-white"
         >

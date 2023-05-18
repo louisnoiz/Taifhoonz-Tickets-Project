@@ -41,6 +41,7 @@
 <script>
 // import { RouterLink } from "vue-router";
 // import HelloWorld from './components/HelloWorld.vue'
+// import axios from 'axios';
 
 export default {
   name: "allConcert",
@@ -138,6 +139,13 @@ export default {
       ],
     };
   },
+  // mounted() {
+  //   axios
+  //   .get('http://localhost:3000/allConcert')
+  //   .then((res) => {
+  //     this.namelist = res.data;
+  //   })
+  // },
   methods: {},
 };
 </script>

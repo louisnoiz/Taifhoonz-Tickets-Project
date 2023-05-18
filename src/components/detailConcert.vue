@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="flex justify-end items-center mt-3" v-bind:style="opacityStyle()">
-          <router-link to="/selectzone"
+          <router-link :to="{ name: 'zoneArea', params: { concertId: this.$route.params.concertId } }"
           class="w-48 rounded-md border border-gray-300 shadow-sm px-6 py-3 bg-[#FE862D] font-bold text-white hover:bg-[#e16f1a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Select Zone
           -></router-link>
         </div>
@@ -75,9 +75,11 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   data() {
     return {
+      concert: {},
       isOpen: false,
       selectedRound: { value: null, label: "Select Round and Time" },
       rounds: [
@@ -86,6 +88,14 @@ export default {
         { value: "round3", label: "Round 3 -- SUN 24 APR 2023" },
       ],
     };
+  },
+  mounted(){
+    const id = this.$route.params.concertId
+    axios
+    .get("http://localhost:3000/concertById/"+id)
+    .then((res) => {
+      this.concert = res.data[0];
+    })
   },
 
   methods: {
