@@ -1,22 +1,19 @@
-<template class="w-full h-screen">
-  <div class="container mx-auto flex justify-center items-center">
-    <div class="grid grid-rows gap-4 border rounded-xl drop-shadow-lg border-[#D2CFCF] p-8 px-20">
-      <h1 class="text-3xl font-semibold">Log in</h1>
-      <div class="flex justify-center items-center">
-        <form class="grid grid-rows gap-4">
-          <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
+<template class="w-full min-h-screen">
+  <div class="w-full min-h-screen bg-gradient-to-b from-[#2c2c38] via-[#284265] to-[#2c2c38]">
+    <div class="container mx-auto pt-10 flex justify-center items-center">
+      <div
+        class="w-7/12 flex flex-col gap-6 mt-8 pt-16 justify-center items-center border rounded-xl drop-shadow-lg border-[#D2CFCF] p-8 px-20">
+        <h1 class="text-3xl font-bold text-white tracking-wide mb-5">Log in</h1>
+          <input type="text" class="w-96 p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
             placeholder="Username" />
-          <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
+          <input type="text" class="w-96 p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
             placeholder="Password" />
-          <div class="flex justify-center items-center">
-            <button type="submit" class="w-1/2 p-2 rounded-xl drop-shadow-lg bg-orange-300">log in</button>
+          <div class="flex justify-center items-center mt-4">
+            <button type="submit" class="w-36 p-2 rounded-xl drop-shadow-lg bg-orange-300">log in</button>
           </div>
           <router-link to="/signuppage">Sign up</router-link>
-        </form>
       </div>
-
     </div>
-
 
   </div>
 </template>

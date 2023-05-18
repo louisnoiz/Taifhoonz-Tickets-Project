@@ -30,37 +30,37 @@
       >
         <div class="text-sm lg:flex-grow">
           <a
-            class="block mt-4 lg:inline-block lg:mt-0 mr-4 hover:text-slate-900"
+            class="block mt-4 lg:inline-block lg:mt-0 text-lg mr-4 hover:text-slate-900"
           >
             <router-link to="/">Home</router-link>
           </a>
           <a
-            class="block mt-4 lg:inline-block lg:mt-0 mr-4 hover:text-slate-900"
+            class="block mt-4 lg:inline-block lg:mt-0 mr-4 text-lg hover:text-slate-900"
           >
             <router-link to="/loginpage">Login</router-link>
           </a>
           <a
-            class="block mt-4 lg:inline-block lg:mt-0 mr-4 hover:text-slate-900"
+            class="block mt-4 lg:inline-block lg:mt-0 mr-4 text-lg hover:text-slate-900"
           >
             <router-link to="/signuppage">Signup</router-link>
           </a>
           <a
-            class="block mt-4 lg:inline-block lg:mt-0 hover:text-slate-900 mr-4"
+            class="block mt-4 lg:inline-block lg:mt-0 text-lg hover:text-slate-900 mr-4"
           >
             <router-link to="/detail/1">Detail</router-link>
           </a>
           <a
-            class="block mt-4 lg:inline-block lg:mt-0 hover:text-slate-900 mr-4"
+            class="block mt-4 lg:inline-block lg:mt-0 text-lg hover:text-slate-900 mr-4"
           >
             <router-link to="/selectzone/1">ZoneArea</router-link>
           </a>
           <a
-            class="block mt-4 lg:inline-block lg:mt-0 hover:text-slate-900 mr-4"
+            class="block mt-4 lg:inline-block lg:mt-0 text-lg hover:text-slate-900 mr-4"
           >
             <router-link to="/payment">Payment</router-link>
           </a>
           <a
-            class="block mt-4 lg:inline-block lg:mt-0 hover:text-slate-900 mr-4"
+            class="block mt-4 lg:inline-block lg:mt-0 text-lg hover:text-slate-900 mr-4"
           >
             <router-link to="/allConcert">Concert</router-link>
           </a>
@@ -77,7 +77,7 @@
             /></router-link>
           </a>
           <button
-            class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-slate-900 mr-4"
+            class="block mt-4 lg:inline-block lg:mt-0 text-white text-lg hover:text-slate-900 mr-4"
             v-on:click="() => (this.modal = !this.modal)"
           >
             <!-- <router-link to="/editprofile">Username</router-link> -->
