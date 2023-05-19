@@ -9,24 +9,24 @@
           <form class="w-full grid grid-rows gap-6">
             <div class="grid grid-cols-2 gap-4">
               <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-                placeholder="First name" />
+                placeholder="First name" v-model="firstname"/>
               <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-                placeholder="Last name" />
+                placeholder="Last name" v-model="lastname"/>
             </div>
             <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-              placeholder="Username" />
+              placeholder="Username" v-model="username"/>
             <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
               placeholder="Phone" />
             <input type="email" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
               placeholder="Email" />
             <div class="grid grid-cols-2 gap-4">
               <input type="password" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-                placeholder="Password" />
+                placeholder="Password" v-model="password"/>
               <input type="password" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
                 placeholder="Confirm Password" />
             </div>
             <div class="flex justify-center items-center mt-4">
-              <button type="submit" class="w-1/2 p-2 rounded-xl drop-shadow-lg bg-orange-300">Create an account</button>
+              <button type="submit" class="w-1/2 p-2 rounded-xl drop-shadow-lg bg-orange-300" @click="signup">Create an account</button>
             </div>
             <router-link to="/loginpage">Sign in</router-link>
           </form>
@@ -43,8 +43,35 @@
   
 <script>
 /* ✓ GOOD */
+import axios from 'axios';
 export default {
   name: 'signupPage',
   // ...
+  data() {
+    return {
+      username: '',
+      firstname: '',
+      lastname:'',
+      password: '',
+    }
+  },
+  methods: {
+    signup() {
+      const data = {
+        username: this.username,
+        firstname: this.firstname,
+        lastname: this.lastname,
+        password: this.password,
+      };
+      axios.post('http://localhost:3000/signup', data)
+        .then((res) => {
+          console.log(res);
+          this.$router.push('/loginpage');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 }
 </script>
