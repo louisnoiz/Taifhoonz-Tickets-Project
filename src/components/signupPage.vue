@@ -16,9 +16,9 @@
             <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
               placeholder="Username" v-model="username"/>
             <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-              placeholder="Phone" />
+              placeholder="Phone" v-model="phone"/>
             <input type="email" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-              placeholder="Email" />
+              placeholder="Email" v-model="email"/>
             <div class="grid grid-cols-2 gap-4">
               <input type="password" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
                 placeholder="Password" v-model="password"/>
@@ -53,14 +53,17 @@ export default {
       firstname: '',
       lastname:'',
       password: '',
+      phone: '',
+      email: '',
     }
   },
   methods: {
     signup() {
       const data = {
         username: this.username,
-        firstname: this.firstname,
-        lastname: this.lastname,
+        fullName: this.firstname + ' ' + this.lastname,
+        phone: this.phone,
+        email: this.email,
         password: this.password,
       };
       axios.post('http://localhost:3000/signup', data)

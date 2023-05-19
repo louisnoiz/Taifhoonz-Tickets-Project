@@ -107,7 +107,7 @@
               </label>
               <div class="flex justify-center items-center">
                 <button
-                  class="w-1/2 p-1 border rounded-lg bg-rose-500 text-white"
+                  class="w-1/2 p-1 border rounded-lg bg-rose-500 text-white" @click="logout"
                 >
                   Log out
                 </button>
@@ -136,7 +136,12 @@ export default {
       modal: false,
     };
   },
-  methods: {},
+  methods: {
+    logout() {
+      localStorage.removeItem("token");
+      this.$router.push("/loginpage");
+    },
+  },
 };
 </script>
 
