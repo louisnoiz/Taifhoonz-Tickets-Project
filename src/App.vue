@@ -64,6 +64,16 @@
           >
             <router-link to="/allConcert">Concert</router-link>
           </a>
+          <a
+            class="block mt-4 lg:inline-block lg:mt-0 text-lg hover:text-slate-900 mr-4"
+          >
+            <router-link to="/admin">Admin page</router-link>
+          </a>
+          <a
+            class="block mt-4 lg:inline-block lg:mt-0 text-lg hover:text-slate-900 mr-4"
+          >
+            <router-link to="/edit">Admin edit</router-link>
+          </a>
         </div>
         <div class="flex justify-center items-center">
           <a

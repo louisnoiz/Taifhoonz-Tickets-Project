@@ -76,5 +76,5 @@ img {
   height: 20%;
 }
 
-.app {}
+
 </style>
