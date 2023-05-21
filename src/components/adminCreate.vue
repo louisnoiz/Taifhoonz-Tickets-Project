@@ -3,13 +3,15 @@
         <div class="container mx-auto py-10 flex flex-col justify-center items-center ">
             <div class="w-full flex justify-end items-center px-20">
                 <div class="w-full flex justify-end items-center px-10">
-                    <button class="w-24 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded text-lg tracking-wide">
+                    <button class="w-24 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded text-lg tracking-wide"
+                        @click="create()">
                         Create
                     </button>
                     <router-link to="/admin">
-                        <button class="w-24 ml-10 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded text-lg tracking-wide">
-                        Cancel
-                    </button>
+                        <button
+                            class="w-24 ml-10 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded text-lg tracking-wide">
+                            Cancel
+                        </button>
                     </router-link>
                 </div>
             </div>
@@ -28,43 +30,43 @@
                 <div class="w-full px-8">
                     <div class="flex flex-col gap-4 py-4 mt-4 text-left">
                         <div class="w-full">
-                            <label class="block text-lg mb-1">Name :</label>
-                            <input type="text" name="name" id="name" value=""
+                            <label class="block text-lg mb-1">Concert Name :</label>
+                            <input type="text" name="name" id="name" v-model="name"
+                                class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
+                        </div>
+                        <div class="w-full">
+                            <label class="block text-lg mb-1">Artist :</label>
+                            <input type="text" name="artist" id="artist" v-model="artist"
                                 class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                         </div>
                         <div class="flex flex-row gap-4">
                             <div class="w-1/2">
                                 <label class="block text-lg mb-1">Date Start :</label>
-                                <input type="date" name="dateStart" id="dateStart" value=""
+                                <input type="date" name="dateStart" id="dateStart" v-model="dateStart"
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                             <div class="w-1/2">
                                 <label class="block text-lg mb-1">Date End :</label>
-                                <input type="date" name="dateStart" id="dateStart" value=""
+                                <input type="date" name="dateStart" id="dateStart" v-model="dateEnd"
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                         </div>
-                        <div class="flex flex-row gap-4">
+                        <!-- <div class="flex flex-row gap-4">
                             <div class="w-1/2">
                                 <label class="block text-lg mb-1">Time Start :</label>
-                                <input type="time" name="timeStart" id="timeStart" value=""
+                                <input type="time" name="timeStart" id="timeStart" v-model=""
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                             <div class="w-1/2">
                                 <label class="block text-lg mb-1">Time End :</label>
-                                <input type="time" name="timeStart" id="timeStart" value=""
+                                <input type="time" name="timeStart" id="timeStart" v-model=""
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
-                        </div>
+                        </div> -->
                         <div class="w-full">
                             <label class="block text-lg mb-1">Location :</label>
-                            <textarea type="text" name="localtion" id="localtion" row="2" value=""
+                            <textarea type="text" name="localtion" id="localtion" row="2" v-model="localtion"
                                 class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full "></textarea>
-                        </div>
-                        <div class="w-full">
-                            <label class="block text-lg mb-1">Price :</label>
-                            <input type="number" name="price" id="price" value=""
-                                class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                         </div>
                     </div>
                 </div>
@@ -76,8 +78,7 @@
             <div class="w-full flex flex-col gap-4">
                 <div class="w-full px-20 text-left">
                     <label class="text-lg block mb-1">Detail :</label>
-                    <textarea name="detail" id="detail"
-                        value=""
+                    <textarea name="detail" id="detail" v-model="details"
                         className="h-56 py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full"></textarea>
                 </div>
                 <div class="w-full mt-2 px-20 text-left flex flex-col gap-4">
@@ -85,31 +86,33 @@
                     <div v-for="item, index in rounds" :key="index"
                         class="bg-white w-full flex rounded border border-gray-300 items-center">
                         <div class="bg-white w-full flex flex-row gap-10 p-10">
-                            <div class="w-1/12 flex items-center">Round {{ index + 1 }}</div>
+                            <div class="w-2/12 flex items-center">Round {{ index + 1 }}</div>
                             <div class="w-3/12 flex items-center">
                                 <label class="w-24">Date : </label>
-                                <input type="date" name="date" id="date" value=""
+                                <input type="date" name="date" id="date" v-model="item.date"
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                             <div class="w-3/12 flex items-center">
                                 <label class="w-36">Time Start : </label>
-                                <input type="time" name="dateEnd" id="dateEnd" value=""
+                                <input type="time" name="dateEnd" id="dateEnd" v-model="item.timeStart"
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                             <div class="w-3/12 flex items-center">
                                 <label class="w-36">Time End : </label>
-                                <input type="time" name="dateEnd" id="dateEnd" value=""
+                                <input type="time" name="dateEnd" id="dateEnd" v-model="item.timeEnd"
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                             <div class="w-1/12 flex items-center">
-                                <button class="shadow-sm bg-blue-500 hover:bg-blue-600 rounded w-24 py-2">
+                                <button class="shadow-sm bg-blue-500 hover:bg-blue-600 rounded w-24 py-2"
+                                    @click="() => deleteRound(index)">
                                     <p class="text-lg text-white">Delete</p>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="w-full flex justify-end">
-                        <button class="bg-orange-300 hover:bg-orange-400 shadow-sm rounded py-2 w-36" @click="() => length_rounds++">
+                        <button class="bg-orange-300 hover:bg-orange-400 shadow-sm rounded py-2 w-36"
+                            @click="() => addRound()">
                             <p class="text-lg">Add Round</p>
                         </button>
                     </div>
@@ -122,36 +125,55 @@
   
 <script>
 // import FileComponent from "./FileComponent"
+import axios from 'axios';
 export default {
     // components: { FileComponent },
     data() {
         return {
-            isOpen: false,
-            selectedRound: { value: null, label: "Select Round and Time" },
-            rounds: [
-                { id: "1", date: "22 APR 2023", timeStart: "11:20 PM", timeEnd: "16:30 PM" },
-            ],
-            length_rounds: 1,
-            handleCancel: false,
+            name: '',
+            details: '',
+            localtion: '',
+            artist: '',
+            dateStart: '',
+            dateEnd: '',
+            rounds: [{ date: "", timeStart: "", timeEnd: "" }],
             filePreview: '',
-            fileName: ''
+            fileName: '',
+            image: null,
         };
     },
     methods: {
+        addRound() {
+            this.rounds.push({ date: "", timeStart: "", timeEnd: "" })
+        },
+        create() {
+            let formData = new FormData();
+            formData.append('image', this.image);
+            formData.append('name', this.name);
+            formData.append('details', this.details);
+            formData.append('localtion', this.localtion);
+            formData.append('dateStart', this.dateStart);
+            formData.append('dateEnd', this.dateEnd);
+            formData.append('artist', this.artist);
+            formData.append('rounds', this.rounds);
+
+            axios.post('http://localhost:3000/createConcert', formData)
+                .then(res => {
+                    console.log(res);
+                }).catch(err => {
+                    console.log(err);
+                })
+        },
+        deleteRound(index) {
+            this.rounds.splice(index, 1)
+        },
         selectRound(round) {
             this.selectedRound = round;
             this.isOpen = false;
         },
-        opacityStyle() {
-            if (this.selectedRound.value === null) {
-                return { opacity: 0 }
-            }
-            else {
-                return { opacity: 100 }
-            }
-        },
         onFileChange($event) {
             const file = $event.target.files[0]
+            this.image = file
             const reader = new FileReader()
             if (file) {
                 reader.readAsDataURL(file)
