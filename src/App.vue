@@ -145,9 +145,9 @@ export default {
   data() {
     return {
       modal: false,
-      fullname: "",
-      email: "",
-      username: "",
+      fullname: "firstname lastname",
+      email: "email@email.com",
+      username: "username",
     };
   },
   mounted() {
@@ -164,6 +164,10 @@ export default {
     logout() {
       localStorage.removeItem("token");
       this.$router.push("/loginpage");
+      this.fullname = "firstname lastname";
+      this.email = "email@email.com";
+      this.username = "username";
+      window.location.reload();
     },
   },
 };

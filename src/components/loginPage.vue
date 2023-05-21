@@ -43,6 +43,7 @@ export default {
           localStorage.setItem('token', token);
           // this.$emit('login', token);
           this.$router.push('/');
+          window.location.reload();
         })
         .catch((err) => {
           console.log(err);
