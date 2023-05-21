@@ -91,7 +91,7 @@
             v-on:click="() => (this.modal = !this.modal)"
           >
             <!-- <router-link to="/editprofile">Username</router-link> -->
-            Username
+            {{ username }}
           </button>
         </div>
       </div>
@@ -107,13 +107,13 @@
                 htmlFor="first-name"
                 className="block leading-6 text-gray-900"
               >
-                Name : Woranun Wareeprasert
+                Name : {{ fullname }}
               </label>
               <label
                 htmlFor="first-name"
                 className="block leading-6 text-gray-900"
               >
-                Email : aitax159@gmail.com
+                Email : {{ email }}
               </label>
               <div class="flex justify-center items-center">
                 <button
@@ -133,6 +133,7 @@
 
 <script>
 import { RouterLink } from "vue-router";
+import jwtDecode from "jwt-decode";
 // import HelloWorld from './components/HelloWorld.vue'
 
 export default {
@@ -144,7 +145,20 @@ export default {
   data() {
     return {
       modal: false,
+      fullname: "",
+      email: "",
+      username: "",
     };
+  },
+  mounted() {
+    if (localStorage.getItem("token")) {
+      const token = localStorage.getItem("token");
+      const decoded = jwtDecode(token);
+      this.username = decoded.payload.username;
+      this.fullname = decoded.payload.fullName;
+      this.email = decoded.payload.email;
+      console.log(decoded);
+    }
   },
   methods: {
     logout() {

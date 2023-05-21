@@ -4,6 +4,9 @@ export default function (to, from, next) {
     if ((to.path !== '/loginpage' && to.path !== '/signuppage') && !isAuthenticated) {
       next('/loginpage');
     }
+    else if ((to.path === '/loginpage' || to.path === '/signuppage') && isAuthenticated) {
+      next('/');
+    }
     else {
       next();
     }
