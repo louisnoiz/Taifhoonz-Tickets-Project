@@ -2,35 +2,37 @@
   <div class="bg-gradient-to-b from-[#2c2c38] via-[#284265] to-[#2c2c38]">
     <div class="container mx-auto flex flex-col justify-center items-center">
       <div class="w-full flex justify-left pt-10">
-        <a href="" class="w-48 text-white text-xl hover:text-indigo-500 font-semibold underline underline-offset-8">Now Showing</a>
-        <a href="" class="w-48 text-white text-xl hover:text-indigo-500 font-semibold underline underline-offset-8">Coming soon</a>
+        <a href="" class="w-48 text-white text-xl hover:text-indigo-500 font-semibold underline underline-offset-8">Now
+          Showing</a>
+        <a href="" class="w-48 text-white text-xl hover:text-indigo-500 font-semibold underline underline-offset-8">Coming
+          soon</a>
       </div>
       <div class="w-full grid lg:grid-cols-4 md:grid-cols-2 grid-rows gap-8 my-10">
         <div className="w-full grid mb-5 rounded-md shadow-md hover:bg-gray-700/10" id="app"
           v-for="(item, index) in this.namelist" :key="index">
           <a href="" class="">
             <router-link to="/detail">
-            <div class="w-full py-5 flex flex-col gap-4 justify-center items-center">
-              <div class="bg-cover bg-center w-auto h-96" :style="img_concert">
-                <div class="w-72 h-72"></div>
-              </div>
-              <p class="flex flex-col gap-3 px-11">
-                <span class="font-bold text-white text-left">
-                  {{ item.name }}
-                </span>
-                <span class="font-base text-sm text-white text-left">
-                  Date: {{ item.date }}
-                </span>
-                <span class="font-base text-sm text-white text-left">
-                  Time: {{ item.time }}
-                </span>
-                <span class="font-base text-sm text-white text-left">
-                  Local: {{ item.local }}
-                </span>
-              </p>
+              <div class="w-full py-5 flex flex-col gap-4 justify-center items-center">
+                <div class="bg-cover bg-center w-auto h-96" :style="img_concert">
+                  <div class="w-72 h-72"></div>
+                </div>
+                <p class="flex flex-col gap-3 px-11">
+                  <span class="font-bold text-white text-left">
+                    {{ item.name }}
+                  </span>
+                  <span class="font-base text-sm text-white text-left">
+                    Date: {{ item.date }}
+                  </span>
+                  <span class="font-base text-sm text-white text-left">
+                    Time: {{ item.time }}
+                  </span>
+                  <span class="font-base text-sm text-white text-left">
+                    Local: {{ item.local }}
+                  </span>
+                </p>
 
-            </div>
-          </router-link>
+              </div>
+            </router-link>
           </a>
         </div>
       </div>

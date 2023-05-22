@@ -2,65 +2,131 @@
     <div class="w-full min-h-screen bg-gradient-to-b from-[#2c2c38] via-[#284265] to-[#2c2c38]">
         <div class="container mx-auto py-10 flex flex-col justify-center items-center ">
             <h1 class="font-bold text-3xl mt-2 text-white pb-10 tracking-wide">รายการชำระเงิน</h1>
-            <div class="w-full grid lg:grid-cols-2 grid-cols-1 gap-4 px-20 mt-2">
-                <div class="w-full flex flex-col justify-center items-center">
-                    <img class="imgqrpayment w-full rounded-lg"
-                        src="https://cdn.discordapp.com/attachments/1023958942554005526/1100013193977401385/IMG_4573.jpg"
-                        alt="" />
-                </div>
-                <div class="w-full px-8 text-white text-xl tracking-wide">
-                    <div class="flex flex-col gap-5 py-4 mt-4 text-left">
-                        <p class="text-3xl font-semibold">Sarun Viwatborvornwong</p>
-                        <p class="mt-5 font-semibold underline underline-offset-4">รายละเอียดบัตร</p>
-                        <p>ชื่อคอนเสิร์ต : TMD Concert</p>
-                        <p>วันที่ 24 เมษายน 2566</p>
-                        <p>รอบเวลา : 15.00</p>
+            <div class="w-10/12 flex flex-row gap-10 px-20 mt-2">
+                <div class="w-7/12 mt-4 px-8 border-2 rounded py-4 text-white text-xl tracking-wide">
+                    <div class="flex flex-col gap-4 text-left">
+                        <div class="w-full flex flex-row items-center">
+                            <p class="w-11/12 font-semibold underline underline-offset-4">รายละเอียดบัตร</p>
+                            <p class="w-1/12 text-end mt-1">X 1</p>
+                        </div>
+                        <p class="text-2xl tracking-wide font-semibold">TMD's Something Concert</p>
+                        <p class="text-xl tracking-wide">ชื่อ : Sarun Viwatborvornwong</p>
+                        <div class="w-full flex flex-row gap-4 items-center">
+                            <p>วันแสดง : 24 เมษายน 2566</p>
+                            <div class="text-lg tracking-wide border text-center px-3 rounded-xl">Round 1</div>
+                        </div>
+                        <p>เวลา : 15.00 - 17.00</p>
                         <p>โซนที่นั่ง : Zone D (Purple)</p>
-                        <router-link to="/getticket"
-                                class="mt-5 text-center px-10 py-4 bg-red-500 text-white font-bold rounded hover:bg-red-600">
-                                ชำระเงิน </router-link>
+                        <div class="border-t py-3 text-right">
+                            <p class="text-2xl">รวม <span class="text-yellow-400">550 THB</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-5/12 mt-4 flex flex-col gap-5 items-center">
+                    <p class="text-white text-start text-xl font-semibold tracking-wide">ช่องทางการชำระเงิน</p>
+                    <div class="w-full flex flex-col text-start gap-5">
+                        <div class="bg-white py-3 px-4 rounded flex flex-row items-center gap-5">
+                            <img class="w-2/12 h-auto rounded" src="../assets/kasikorn.png" alt="Image" />
+                            <p>ธนาคารกสิกรไทย 029-1-24330-1</p>
+                        </div>
+                        <div class="bg-white py-3 px-4 rounded flex flex-row items-center gap-5">
+                            <img class="w-2/12 h-auto rounded" src="../assets/scb.png" alt="Image" />
+                            <p>ธนาคารไทยพาณิชย์ 440-133027-1</p>
+                        </div>
+                        <div class="bg-white py-3 px-4 rounded flex flex-row items-center gap-5">
+                            <img class="w-2/12 h-auto rounded" src="../assets/bangkok.png" alt="Image" />
+                            <p>ธนาคารกรุงเทพ 216-3-08932-1</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-            <!-- <div class="grid grid-rows gap-4 border rounded-xl drop-shadow-lg border-[#c33838] mt-2">
-                <h1 class="font-bold text-3xl mt-2">รายการชำระเงิน</h1>
-                <div class="flex py-8">
-                    <div class="w-1/2 flex flex-col justify-center items-center">
-                        <img class="imgqrpayment w-full rounded-lg"
-                            src="https://cdn.discordapp.com/attachments/1023958942554005526/1100013193977401385/IMG_4573.jpg"
-                            alt="">
+            <div class="w-5/12 border-b-2 py-5 my-5 border-dashed"></div>
+            <div class="w-6/12 flex flex-col gap-5 px-20 py-2 mt-4 text-white justify-center">
+                <p class="text-xl tracking-wide">รายละเอียดการชำระเงิน</p>
+                <div class="mb-1 w-full">
+                    <label class="block text-start mb-1 tracking-wide">Full Name :</label>
+                    <input type="text" class="w-full text-black p-2 rounded" value="123" />
+                </div>
+                <div class="w-full flex flex-row gap-4">
+                    <div class="mb-1 w-full">
+                        <label class="block text-start mb-1 tracking-wide">Date :</label>
+                        <input type="date" class="w-full text-black p-2 rounded" value="123" />
                     </div>
-                    <div class="w-1/2 font-bold text-2xl mt-4">
-                        <div class="detailcard flex flex-col items-start">
-                            <h2>ชื่อผู้ใช้ : Sarun Viwatborvornwong</h2><br>
-                            <p>รายละเอียดบัตร</p><br>
-                        </div>
-                        <div class="flex flex-col items-start ml-4">
-                            <p>ชื่อคอนเสิร์ต : TMD Concert</p><br>
-                            <p>วันที่ 24 เมษายน 2566</p><br>
-                            <p>รอบเวลา : 15.00</p><br>
-                            <p>โซนที่นั่ง : Zone D (Purple)</p><br>
-                            <router-link to="/getticket"
-                                class="ml-4 px-10 py-4 bg-red-500 text-white font-bold rounded hover:bg-red-600">
-                                ชำระเงิน </router-link>
-                        </div>
-                        <div class="flex flex-col items-center mt-4">
-
-                        </div>
+                    <div class="mb-1 w-full">
+                        <label class="block text-start mb-1 tracking-wide">Time :</label>
+                        <input type="time" class="w-full text-black p-2 rounded" value="123" />
                     </div>
                 </div>
-            </div> -->
+                <div class="w-full">
+                    <label class="text-lg text-left block mb-1 tracking-wide">Image :</label>
+                    <input id="file-input" class="hide-file-input hidden" type="file" accept="image/*"
+                        @change="onFileChange($event)" />
+                    <div class="w-full flex items-center">
+                        <label
+                            class="bg-white p-3 mr-4 gap-3 flex items-center border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100"
+                            for="file-input">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="30"
+                                width="30">
+                                <rect width="256" height="256" fill="none"></rect>
+                                <polyline points="86 82 128 40 170 82" fill="none" stroke="#000" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="24"></polyline>
+                                <line x1="128" y1="152" x2="128" y2="40" fill="none" stroke="#000" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="24"></line>
+                                <path d="M216,152v56a8,8,0,0,1-8,8H48a8,8,0,0,1-8-8V152" fill="none" stroke="#000"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="24"
+                                    id="mainIconPathAttribute">
+                                </path>
+                            </svg>
+                            <p class="text-black">Upload a file</p>
+                        </label>
+                        <p class="text-white">{{ fileName ? fileName : "No file chosen." }}</p>
+                    </div>
+                </div>
+                <div class="w-full flex flex-row gap-4">
+                    <router-link to="/"
+                        class="w-1/2 mt-5 text-center px-10 py-4 bg-gray-500 tracking-wide text-white font-bold rounded hover:bg-gray-600">
+                        ยกเลิก </router-link>
+                    <router-link to="/getticket"
+                        class="w-1/2 mt-5 text-center px-10 py-4 bg-red-500 tracking-wide text-white font-bold rounded hover:bg-red-600">
+                        ยืนยันการชำระเงิน </router-link>
+                </div>
 
+            </div>
         </div>
     </div>
 </template>
+<script>
+export default {
+    // components: { FileComponent },
+    data() {
+        return {
+            filePreview: '',
+            fileName: ''
+        };
+    },
+    methods: {
+        onFileChange($event) {
+            const file = $event.target.files[0]
+            const reader = new FileReader()
+            if (file) {
+                reader.readAsDataURL(file)
+                reader.onload = () => {
+                    // Set a new property on the captured `file` and set it to the converted base64 image
+                    file.previewBase64 = reader.result
+                    // Emit the file with the new previewBase64 property on it
+                    this.filePreview = file.previewBase64
+                    this.fileName = file.name;
+                    this.$emit('file-updated', file)
+                }
+                reader.onerror = (error) => {
+                    console.log('Error ', error)
+                }
+                console.log("file :" + file)
+            }
+        },
+    },
+};
+</script>
 <style>
 .imgqrpayment {
     width: 60%;

@@ -3,11 +3,6 @@
         <div class="container mx-auto py-10 flex flex-col justify-center items-center ">
             <div class="w-full flex justify-end items-center px-20">
                 <div v-if="!handleEdit" class="w-full flex justify-end items-center px-10">
-                    <router-link to="/order">
-                    <button class="w-44 text-white bg-yellow-400 hover:bg-yellow-500  p-2 rounded text-lg tracking-wide">
-                        View Order
-                    </button>
-                </router-link>
                     <button class="w-24 text-white ml-10 bg-red-500 hover:bg-red-600  p-2 rounded text-lg tracking-wide"
                         @click="() => handleEdit = true">
                         Edit
@@ -157,13 +152,13 @@
                     <label class="text-lg block mb-1">Detail :</label>
                     <textarea name="detail" id="detail"
                         value="ปี 2023 นี้เป็นปีแห่งความปัง เราได้โคจรมาเจอกันอีกครั้งกับ LEO
-                                                                                                    presents ‘Move On จนโคจรมาเจอกัน คอนเสิร์ต’ 💫 ไม่ว่าราศีไหน
-                                                                                                    ก็จะได้พบกับเหล่าศิลปินที่ฟังแล้วอินไปถึงจักรวาล ✨ INK WARUNTORN
-                                                                                                    | NONT TANONT | BOWKYLION | JEFF SATUR | EARTH PATRAVEE | TATTOO
-                                                                                                    COLOUR | ZEAL | ETC. | POLYCAT | SLOT MACHINE | SCRUBB | THREE MAN
-                                                                                                    DOWN | TILLY BIRDS | SLAPKISS | PAPER PLANES | HYBS | SAFEPLANET |
-                                                                                                    DEPT 2 วัน 6 รอบการแสดง 18 ศิลปิน วันเสาร์ที่ 10 มิถุนายน 2566
-                                                                                                    รอบที่ 1 เวลา 14.00 THE SUN ☀️"
+                                                                                                        presents ‘Move On จนโคจรมาเจอกัน คอนเสิร์ต’ 💫 ไม่ว่าราศีไหน
+                                                                                                        ก็จะได้พบกับเหล่าศิลปินที่ฟังแล้วอินไปถึงจักรวาล ✨ INK WARUNTORN
+                                                                                                        | NONT TANONT | BOWKYLION | JEFF SATUR | EARTH PATRAVEE | TATTOO
+                                                                                                        COLOUR | ZEAL | ETC. | POLYCAT | SLOT MACHINE | SCRUBB | THREE MAN
+                                                                                                        DOWN | TILLY BIRDS | SLAPKISS | PAPER PLANES | HYBS | SAFEPLANET |
+                                                                                                        DEPT 2 วัน 6 รอบการแสดง 18 ศิลปิน วันเสาร์ที่ 10 มิถุนายน 2566
+                                                                                                        รอบที่ 1 เวลา 14.00 THE SUN ☀️"
                         className="h-56 py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full"></textarea>
                 </div>
                 <div class="w-full mt-2 px-20 text-left flex flex-col gap-4">
@@ -195,7 +190,8 @@
                         </div>
                     </div>
                     <div class="w-full flex justify-end">
-                        <button class="bg-orange-300/90 hover:bg-orange-400/90 shadow-sm rounded py-2 w-36" @click="() => length_rounds++">
+                        <button class="bg-orange-300/90 hover:bg-orange-400/90 shadow-sm rounded py-2 w-36"
+                            @click="() => length_rounds++">
                             <p class="text-lg">Add Round</p>
                         </button>
                     </div>
