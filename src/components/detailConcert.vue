@@ -52,7 +52,7 @@
             </div>
           </div>
         </div>
-        <div class="flex justify-end items-center mt-3" v-bind:style="opacityStyle()">
+        <div v-show="checkValueRound" class="flex justify-end items-center mt-3">
           <router-link :to="{ name: 'zoneArea', params: { concertId: this.$route.params.concertId } }"
             class="w-48 rounded-md border border-gray-300 shadow-sm px-6 py-3 bg-[#FE862D] font-bold text-white hover:bg-[#e16f1a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Select
             Zone
@@ -74,6 +74,7 @@ export default {
       isOpen: false,
       selectedRound: "",
       rounds: [],
+      checkValueRound: false
     };
   },
   mounted() {
@@ -103,15 +104,16 @@ export default {
     selectRound(round) {
       this.selectedRound = round;
       this.isOpen = false;
+      this.checkValueRound = true
     },
-    opacityStyle() {
-      if (this.selectedRound.value === null) {
-        return { opacity: 0 }
-      }
-      else {
-        return { opacity: 100 }
-      }
-    },
+    // opacityStyle() {
+    //   if (this.selectedRound.value === null) {
+    //     return { opacity: 0 }
+    //   }
+    //   else {
+    //     return { opacity: 100 }
+    //   }
+    // },
     sentSelectZone() {
       this.$router.push({ name: 'zoneArea', params: { concertId: this.$route.params.concertId }, body: { round: this.selectedRound } })
     }

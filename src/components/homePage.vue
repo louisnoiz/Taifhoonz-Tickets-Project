@@ -8,32 +8,17 @@
           </p>
           <p class="text-white tracking-wide mt-3">{{ concert.details }}</p>
           <p class="text-white tracking-wide">Show Date : {{ concert.dateStart }}</p>
-          <p class="text-white tracking-wide">Location : {{ concert.location }}</p>
-          <a
-            class="w-36 mt-3 border-2 border-orange-500 hover:bg-orange-500/10 text-orange-500 rounded text-sm text-center p-2 tracking-wide">
-            <router-link :to="`/detail/${concert.id}`">Buy Ticket</router-link>
-          </a>
-        </div>
-        <div class="w-full my-10 flex justify-center">
-          <img class="w-96 h-auto rounded" src="../assets/concert.png" alt="Image" />
-        </div>
-      </div>
-    </div>
-    <div class="w-full h-screen bg-gray-300/20">
-      <div class="container mx-auto flex flex-row gap-5 justify-center items-center">
-        <div class="w-full py-36 px-5 my-10 flex flex-col gap-3 text-left">
-          <p class="text-white text-5xl font-semibold tracking-wide">
-            RADWIMPS Asian Tour 2023 in Bangkok
-          </p>
-          <p class="text-white tracking-wide mt-3">Please be informed that service fee will be adjusted from 20 baht per
-            ticket to 30 baht starting from April 1st, 2023 onwards . . .</p>
-          <p class="text-white tracking-wide">Show Date : Thursday 27 July 2023</p>
-          <p class="text-white tracking-wide">Venue : Union Hall, Union Mall</p>
-          <p class="text-white tracking-wide">Ticket Price : 3,400 / 2,600</p>
-          <a href="#"
-            class="w-36 mt-3 border-2 border-orange-500 hover:bg-orange-500/10 text-orange-500 rounded text-sm text-center p-2 tracking-wide">
-            COMING SOON
-          </a>
+          <p class="text-white tracking-wide mb-4">Location : {{ concert.location }}</p>
+          <div class="mb-6">
+            <router-link :to="`/detail/${concert.id}`"><a
+                class="w-36 mt-3 px-9 border-2 border-orange-500 hover:bg-orange-500/10 text-orange-500 rounded text-sm text-center p-2 tracking-wide">Buy
+                Ticket</a></router-link>
+          </div>
+          <div>
+            <router-link to="/allConcert"><a
+                class="w-48 mt-3 px-9 border-2 border-white hover:bg-white/20 text-white rounded text-sm text-center p-2 tracking-wide">See
+                more concerts -></a></router-link>
+          </div>
         </div>
         <div class="w-full my-10 flex justify-center">
           <img class="w-96 h-auto rounded" src="../assets/concert.png" alt="Image" />
@@ -50,7 +35,7 @@ import axios from 'axios';
 export default {
   name: "homePage",
   components: {
-  //   // HelloWorld
+    //   // HelloWorld
     RouterLink,
   },
   data() {
