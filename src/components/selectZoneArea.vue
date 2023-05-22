@@ -10,21 +10,12 @@
                 <div class="w-full px-8">
                     <div class="flex flex-col gap-4 py-4 mt-4 text-left text-white">
                         <div class="font-bold text-2xl mb-2">Concert's Remark details</div>
-                        <div class="flex">
-                            <img class="colorZone" src="../assets/zonegreen.png" alt="">
-                            <p>&ensp; Zone (Green) : 4,800 THB</p>
-                        </div>
-                        <div class="flex">
-                            <img class="colorZone" src="../assets/zpnebluecolor.png" alt="">
-                            <p>&ensp; Zone (Blue) : 4,500 THB</p>
-                        </div>
-                        <div class="flex">
-                            <img class="colorZone" src="../assets/zonepurple.png" alt="">
-                            <p>&ensp; Zone (Purple) : 3,500 THB</p>
-                        </div>
-                        <div class="flex">
-                            <img class="colorZone" src="../assets/zoneorange.png" alt="">
-                            <p>&ensp; Zone (Orange) : 2,500 THB</p>
+                        <div class="flex" v-for="(zone, index) in Zones" :key="zone.id">
+                            <img v-if="index == 0" class="colorZone" src="../assets/zonegreen.png" alt="">
+                            <img v-if="index == 1" class="colorZone" src="../assets/zpnebluecolor.png" alt="">
+                            <img v-if="index == 2" class="colorZone" src="../assets/zonepurple.png" alt="">
+                            <img v-if="index == 3" class="colorZone" src="../assets/zoneorange.png" alt="">
+                            <p>&ensp; {{zone.name}} : {{zone.price}} THB</p>
                         </div>
                     </div>
                     <div class="ZoneAreaSelectBox relative mt-8 ">
@@ -32,7 +23,7 @@
                             <button @click="isOpen = !isOpen" type="button"
                                 class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-2 py-4 bg-red-500 font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 id="Zones-menu" aria-haspopup="true" aria-expanded="true">
-                                {{ selectedZone.label }}
+                                {{ selectedZone ? selectedZone.name + ' : ' + selectedZone.price + ' THB': 'Select Zone' }}
                                 <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                     fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd"
@@ -46,16 +37,16 @@
                             class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-red-500 ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="Zones-menu">
                             <div class="py-1" role="none">
-                                <a v-for="round in Zones" :key="round.value" @click="selectZone(round)"
+                                <a v-for="zone in Zones" :key="zone.id" @click="selectZone(zone)"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                     role="menuitem">
-                                    {{ round.label }}
+                                    {{zone.name}} : {{zone.price}} THB
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="flex justify-end items-center mt-10">
-                        <router-link to="/payment" v-if="selectedZone.value"
+                        <router-link to="/payment" v-if="selectedZone"
                             class="w-48 rounded-md border border-gray-300 shadow-sm px-6 py-3 bg-[#FE862D] font-bold text-white hover:bg-[#e16f1a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Buy
                             Ticket -></router-link>
                     </div>
@@ -147,33 +138,45 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
+// import moment from 'moment';
+
 export default {
     data() {
         return {
             isOpen: false,
-            selectedZone: { value: null, label: "Select Zone Area" },
-            Zones: [
-                { value: "Zone A (Blue)", label: "Zone A (Blue)" },
-                { value: "Zone A (Purple)", label: "Zone A (Purple)" },
-                { value: "Zone B (Blue)", label: "Zone B (Blue)" },
-                { value: "Zone B (Purple)", label: "Zone B (Purple)" },
-                { value: "Zone C (Blue)", label: "Zone C (Blue)" },
-                { value: "Zone C (Purple)", label: "Zone C (Purple)" },
-                { value: "Zone G (Blue)", label: "Zone G (Blue)" },
-                { value: "Zone G (Purple)", label: "Zone G (Purple)" },
-                { value: "Zone H (Blue)", label: "Zone H (Blue)" },
-                { value: "Zone H (Purple)", label: "Zone H (Purple)" },
-                { value: "Zone I (Blue)", label: "Zone I (Blue)" },
-                { value: "Zone I (Purple)", label: "Zone I (Purple)" },
-            ],
+            selectedZone: null,
+            Zones: [],
         };
     },
-
+    mounted() {
+        const id = this.$route.params.concertId
+        axios
+            .get("http://localhost:3000/getConcertById/" + id)
+            .then((res) => {
+                this.concert = res.data;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        axios.get("http://localhost:3000/getZoneByConcertId/" + id)
+            .then((res) => {
+                this.Zones = res.data;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    },
     methods: {
         selectZone(zone) {
             this.selectedZone = zone;
             this.isOpen = false;
         },
+        buy(){
+            const id = this.$route.params.concertId
+            const zone = this.selectedZone.value
+            this.$router.push({ name: 'payment', params: { concertId: id, zone: zone } })
+        }
     },
 };
 </script>

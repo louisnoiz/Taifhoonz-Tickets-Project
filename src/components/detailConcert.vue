@@ -3,27 +3,27 @@
     <div class="container mx-auto py-10 flex flex-col justify-center items-center ">
       <div class="w-full grid lg:grid-cols-2 grid-cols-1 gap-4 px-20 mt-2">
         <div class="w-full flex flex-col items-center">
-          <img class="w-80 object-cover rounded-lg mt-8"
-            src="https://res.theconcert.com/w_375,h_499,c_thumb/027c5eaa2474e2ed2093030ebf823a2d1/aw-resize-the-concert-01.jpg" />
+          <img class="w-80 object-cover rounded-lg mt-8" :src="`http://localhost:3000/${concert.image}`" />
         </div>
         <div class="w-full px-8">
           <div class="flex flex-col gap-4 py-4 mt-4 text-left">
             <div class="text-3xl font-bold text-white tracking-wide">
               {{ concert.name }}
             </div>
-            <p class="w-full flex flex-row">
-              <span class="w-1/2 font-base text-lg text-white text-left">
-                Date: {{ formatDate(concert.dateStart) }} - {{ formatDate(concert.dateEnd) }}
-              </span>
-            </p>
-            <span class="w-1/2 font-base text-lg text-white text-left">
-              Location: {{concert.location}}}
+            <span class="font-base text-lg text-white text-left">
+              Artist: {{ concert.artist }}
             </span>
-            <p class="text-gray-700 text-white tracking-wide text-justify indent-14">
+            <span class="font-base text-lg text-white text-left">
+              Date: {{ formatDate(concert.dateStart) }} - {{ formatDate(concert.dateEnd) }}
+            </span>
+            <span class="font-base text-lg text-white text-left">
+              Location: {{ concert.location }}
+            </span>
+            <span class="font-base text-lg text-white text-left">
               {{ concert.details }}
-            </p>
+            </span>
           </div>
-        </div>        
+        </div>
         <div class="relative inline-block text-left mt-3">
           <div>
             <button @click="isOpen = !isOpen" type="button"
@@ -43,17 +43,20 @@
             class="right-0 mt-2 w-full rounded-md shadow-lg bg-red-500 ring-1 ring-black ring-opacity-5 " role="menu"
             aria-orientation="vertical" aria-labelledby="rounds-menu">
             <div class="py-1" role="none">
-              <a v-for="round in rounds" :key="round.value" @click="selectRound(round)"
+              <a v-for="(round, index) in rounds" :key="round.id" @click="selectRound(round.id)"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
-                {{ round.label }}
+                Round {{ index + 1 }} - {{ new Date(round.date).toDateString() }} ( {{ new
+                  Date(round.startTime).toTimeString().slice(0, 5) }} - {{ new Date(round.endTime).toTimeString().slice(0, 5)
+  }})
               </a>
             </div>
           </div>
         </div>
         <div class="flex justify-end items-center mt-3" v-bind:style="opacityStyle()">
           <router-link :to="{ name: 'zoneArea', params: { concertId: this.$route.params.concertId } }"
-          class="w-48 rounded-md border border-gray-300 shadow-sm px-6 py-3 bg-[#FE862D] font-bold text-white hover:bg-[#e16f1a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Select Zone
-          -></router-link>
+            class="w-48 rounded-md border border-gray-300 shadow-sm px-6 py-3 bg-[#FE862D] font-bold text-white hover:bg-[#e16f1a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Select
+            Zone
+            -></router-link>
         </div>
       </div>
     </div>
@@ -69,21 +72,27 @@ export default {
     return {
       concert: {},
       isOpen: false,
-      selectedRound: { value: null, label: "Select Round and Time" },
-      rounds: [
-        { value: "round1", label: "Round 1 -- FRI 22 APR 2023" },
-        { value: "round2", label: "Round 2 -- SAT 23 APR 2023" },
-        { value: "round3", label: "Round 3 -- SUN 24 APR 2023" },
-      ],
+      selectedRound: "",
+      rounds: [],
     };
   },
-  mounted(){
+  mounted() {
     const id = this.$route.params.concertId
     axios
-    .get("http://localhost:3000/getConcertById/"+id)
-    .then((res) => {
-      this.concert = res.data;
-    })
+      .get("http://localhost:3000/getConcertById/" + id)
+      .then((res) => {
+        this.concert = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios.get("http://localhost:3000/getRoundByConcertId/" + id)
+      .then((res) => {
+        this.rounds = res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 
   methods: {
@@ -102,6 +111,9 @@ export default {
       else {
         return { opacity: 100 }
       }
+    },
+    sentSelectZone() {
+      this.$router.push({ name: 'zoneArea', params: { concertId: this.$route.params.concertId }, body: { round: this.selectedRound } })
     }
   },
 };
