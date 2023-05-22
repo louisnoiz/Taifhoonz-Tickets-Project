@@ -51,14 +51,6 @@ const routes = [
     },
   },
   {
-    path: "/getticket/:ticketId",
-    name: "getTicket",
-    component: () => import("../components/getTicket.vue"),
-    meta: {
-      requiresAuth: true,
-    },
-  },
-  {
     path: "/myticket",
     name: "AllTicket",
     component: () => import("../components/myTickets.vue"),
