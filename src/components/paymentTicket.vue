@@ -1,4 +1,23 @@
 <template class="w-full min-h-screen">
+    <div v-if="handleConfirm" class="w-full opacity-100 absolute h-full bg-gray-500/30">
+        <div class="w-full min-h-screen relative flex justify-center items-center">
+            <div class="w-3/12 p-5 bg-white rounded flex flex-col gap-4 justify-center items-center py-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"
+                    class="bi bi-check-circle" viewBox="0 0 16 16" id="IconChangeColor">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                        id="mainIconPathAttribute" fill="#24e54b"></path>
+                    <path
+                        d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"
+                        id="mainIconPathAttribute" fill="#24e54b"></path>
+                </svg>
+                <p class="text-2xl">สำเร็จ</p>
+                <p>คุณได้ทำการชำระเงินเรียบร้อย</p>
+                <router-link to="/myticket" class="w-full">
+                    <button class="w-full mt-4 rounded text-white bg-green-400 p-3">ปิด</button>
+                </router-link>
+            </div>
+        </div>
+    </div>
     <div class="w-full min-h-screen bg-gradient-to-b from-[#2c2c38] via-[#284265] to-[#2c2c38]">
         <div class="container mx-auto py-10 flex flex-col justify-center items-center ">
             <h1 class="font-bold text-3xl mt-2 text-white pb-10 tracking-wide">รายการชำระเงิน</h1>
@@ -86,9 +105,9 @@
                     <router-link to="/"
                         class="w-1/2 mt-5 text-center px-10 py-4 bg-gray-500 tracking-wide text-white font-bold rounded hover:bg-gray-600">
                         ยกเลิก </router-link>
-                    <router-link to="/getticket"
-                        class="w-1/2 mt-5 text-center px-10 py-4 bg-red-500 tracking-wide text-white font-bold rounded hover:bg-red-600">
-                        ยืนยันการชำระเงิน </router-link>
+                        <button @click="() => handleConfirm = true" class="w-1/2 mt-5 text-center px-10 py-4 bg-red-500 tracking-wide text-white font-bold rounded hover:bg-red-600">
+                            ยืนยันการชำระเงิน
+                        </button>
                 </div>
 
             </div>
@@ -101,7 +120,8 @@ export default {
     data() {
         return {
             filePreview: '',
-            fileName: ''
+            fileName: '',
+            handleConfirm: false
         };
     },
     methods: {

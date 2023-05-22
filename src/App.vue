@@ -63,8 +63,8 @@
                   x1="388.07" y1="278.01" x2="371.56" y2="261.5"></line>
               </svg></router-link>
           </a>
-          <svg width="25" height="25" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
-            xmlns="http://www.w3.org/2000/svg" id="IconChangeColor">
+          <svg @click="() => (this.modalNotify = !this.modalNotify)" width="25" height="25" stroke-width="1.5"
+            viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="IconChangeColor">
             <path
               d="M18.1336 11C18.7155 16.3755 21 18 21 18H3C3 18 6 15.8667 6 8.4C6 6.70261 6.63214 5.07475 7.75736 3.87452C8.88258 2.67428 10.4087 2 12 2C12.3373 2 12.6717 2.0303 13 2.08949"
               stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" id="mainIconPathAttribute" fill="#ffffff">
@@ -79,7 +79,7 @@
             </path>
           </svg>
           <button class="block ml-4 mt-4 lg:inline-block lg:mt-0 text-white text-lg hover:text-slate-900 mr-4"
-            v-on:click="() => (this.modal = !this.modal)">
+            @click="() => (this.modal = !this.modal)">
             <!-- <router-link to="/editprofile">Username</router-link> -->
             {{ username }}
           </button>
@@ -107,6 +107,24 @@
         </div>
       </div>
     </div>
+    <div v-if="this.modalNotify">
+      <div class="w-full h-max flex justify-end items-start absolute z-10">
+        <div class="container w-1/5 mt-1 p-3 mr-1 drop-shadow-lg border tracking-wide text-start rounded-lg bg-white">
+          <div v-for="item, index in testNameConcert" :key="index">
+            <router-link to="/detail" @click="modalNotify = !modalNotify">
+              <div v-if="index < 6 && index !== 5" class="border-b p-2 border-gray-600">
+                {{ item.name }}
+                <!-- For new concert -->
+                <span v-if="index === 0" class="text-green-500">New !!</span>
+              </div>
+              <div v-else-if="index === 5" class=" p-2 border-gray-600">
+                {{ item.name }}
+              </div>
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </div>
     <router-view :key="$route.fullPath" />
   </div>
 </template>
@@ -125,9 +143,19 @@ export default {
   data() {
     return {
       modal: false,
+      modalNotify: false,
       fullname: "firstname lastname",
       email: "email@email.com",
       username: "username",
+      testNameConcert: [
+        { name: "something 1" },
+        { name: "something 2" },
+        { name: "something 3" },
+        { name: "something 4" },
+        { name: "something 5" },
+        { name: "something 6" },
+        { name: "something 7" },
+      ]
     };
   },
   mounted() {
@@ -172,4 +200,5 @@ body {
 .ticketbtn {
   width: 30px;
   height: 30px;
-}</style>
+}
+</style>

@@ -8,25 +8,45 @@
         <div class="flex justify-center items-center">
           <form class="w-full grid grid-rows gap-6">
             <div class="grid grid-cols-2 gap-4">
-              <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-                placeholder="First name" v-model="firstname"/>
-              <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-                placeholder="Last name" v-model="lastname"/>
+              <p>
+                <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
+                placeholder="First name" v-model="state.firstname" />
+              </p>
+              <p>
+                <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
+                placeholder="Last name" v-model="state.lastname" />
+              </p>
+              <span v-if="v$.firstname.$error" style="color: rgb(253, 186, 116);"> {{ v$.firstname.$errors[0].$message }} </span>
+              <span v-if="v$.lastname.$error" style="color: rgb(253, 186, 116);"> {{ v$.lastname.$errors[0].$message }} </span>
             </div>
-            <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-              placeholder="Username" v-model="username"/>
-            <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-              placeholder="Phone" v-model="phone"/>
-            <input type="email" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-              placeholder="Email" v-model="email"/>
+            
+              <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
+              placeholder="Username" v-model="state.username" />
+              <span v-if="v$.username.$error" style="color: rgb(253, 186, 116);"> {{ v$.username.$errors[0].$message }} </span>
+            
+              <input type="text" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
+              placeholder="Phone" v-model="state.phone" />
+              <span v-if="v$.phone.$error" style="color: rgb(253, 186, 116);"> {{ v$.phone.$errors[0].$message }} </span>
+            
+              <input type="username" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
+              placeholder="Email" v-model="state.email" />
+              <span v-if="v$.email.$error" style="color: rgb(253, 186, 116);"> {{ v$.email.$errors[0].$message }} </span>
+            
             <div class="grid grid-cols-2 gap-4">
-              <input type="password" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-                placeholder="Password" v-model="password"/>
-              <input type="password" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
-                placeholder="Confirm Password" />
+              <p>
+                <input type="password" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
+                placeholder="Password" v-model="state.password.password" />
+              </p>
+              <p>
+                <input type="password" class="p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
+                placeholder="Confirm Password" v-model="state.password.confirmpassword" />
+              </p>
+              <span v-if="v$.password.password.$error" style="color: rgb(253, 186, 116);"> {{ v$.password.password.$errors[0].$message }}</span>
+                <span v-if="v$.password.confirmpassword.$error" style="color: rgb(253, 186, 116);"> {{ v$.password.confirmpassword.$errors[0].$message }}</span>
             </div>
             <div class="flex justify-center items-center mt-4">
-              <button type="submit" class="w-1/2 p-2 rounded-xl drop-shadow-lg bg-orange-300" @click="signup">Create an account</button>
+              <button type="submit" class="w-1/2 p-2 rounded-xl drop-shadow-lg bg-orange-300" @click="signup">Create an
+                account</button>
             </div>
             <router-link to="/loginpage">Sign in</router-link>
           </form>
@@ -44,36 +64,84 @@
 <script>
 /* ✓ GOOD */
 import axios from 'axios';
+import useValidate from '@vuelidate/core'
+import { required, minLength, sameAs, email } from '@vuelidate/validators'
+import { computed, reactive } from 'vue';
+
+
 export default {
   name: 'signupPage',
   // ...
-  data() {
-    return {
+  setup() {
+    const state = reactive({
       username: '',
       firstname: '',
-      lastname:'',
-      password: '',
+      lastname: '',
+      password: {
+        password: '',
+        confirmpassword: '',
+      },
       phone: '',
       email: '',
+    })
+
+    const rules = computed(() => ({
+      username: { required },
+      firstname: { required },
+      lastname: { required },
+      password: {
+        password: { required, minLength: minLength(8) },
+        confirmpassword: { required, sameAs: sameAs(state.password.password) },
+      },
+      phone: { required },
+      email: { required, email },
+    }))
+
+    const v$ = useValidate(rules, state)
+
+    return {
+      state,
+      v$,
     }
+  },
+  validations: {
+    username: { required },
+    firstname: { required },
+    lastname: { required },
+    password: {
+      password: { required },
+      confirmpassword: { required },
+    },
+    phone: { required },
+    email: { required },
   },
   methods: {
     signup() {
-      const data = {
-        username: this.username,
-        fullName: this.firstname + ' ' + this.lastname,
-        phone: this.phone,
-        email: this.email,
-        password: this.password,
-      };
-      axios.post('http://localhost:3000/signup', data)
-        .then((res) => {
-          console.log(res);
-          this.$router.push('/loginpage');
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this.v$.$validate()
+      if (!this.v$.$error) {
+        const data = {
+          username: this.state.username,
+          fullName: this.state.firstname + ' ' + this.state.lastname,
+          password: this.state.password.password,
+          phone: this.state.phone,
+          email: this.state.email
+        };
+        axios.post('http://localhost:3000/signup', data)
+          .then((res) => {
+            console.log(res);
+            this.$router.push('/loginpage');
+          })
+          .catch((err) => {
+            console.log(err);
+            alert('Username or Email already exists');
+            window.location.reload();
+          });
+      }
+      else {
+        alert('Please fill in all the fields');
+        this.$router.push('/signuppage');
+      }
+
     },
   },
 }

@@ -6,7 +6,7 @@
         <h1 class="text-3xl font-bold text-white tracking-wide mb-5">Log in</h1>
           <input type="text" class="w-96 p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
             placeholder="Username" v-model="username"/>
-          <input type="text" class="w-96 p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
+          <input type="password" class="w-96 p-2 px-5 border rounded-xl drop-shadow-lg border-[#D2CFCF] bg-[#F9FAFB]"
             placeholder="Password" v-model="password"/>
           <div class="flex justify-center items-center mt-4">
             <button type="submit" class="w-36 p-2 rounded-xl drop-shadow-lg bg-orange-300" @click="login">log in</button>
@@ -41,12 +41,13 @@ export default {
           console.log(res);
           const token = res.data.token;
           localStorage.setItem('token', token);
-          // this.$emit('login', token);
           this.$router.push('/');
           window.location.reload();
         })
         .catch((err) => {
           console.log(err);
+          alert('Wrong username or password');
+          window.location.reload();
         });
     },
   },
