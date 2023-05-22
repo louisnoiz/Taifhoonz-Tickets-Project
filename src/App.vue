@@ -79,7 +79,7 @@
             </path>
           </svg>
           <button class="block ml-4 mt-4 lg:inline-block lg:mt-0 text-white text-lg hover:text-slate-900 mr-4"
-            @click="() => (this.modal = !this.modal)">
+            @click="() => handleAccount()">
             <!-- <router-link to="/editprofile">Username</router-link> -->
             {{ username }}
           </button>
@@ -111,7 +111,7 @@
       <div class="w-full h-max flex justify-end items-start absolute z-10">
         <div class="container w-1/5 mt-1 p-3 mr-1 drop-shadow-lg border tracking-wide text-start rounded-lg bg-white">
           <div v-for="item, index in testNameConcert" :key="index">
-            <router-link to="/detail" @click="modalNotify = !modalNotify">
+            <router-link to="/detail" @click="() => handleNotify()">
               <div v-if="index < 6 && index !== 5" class="border-b p-2 border-gray-600">
                 {{ item.name }}
                 <!-- For new concert -->
@@ -177,6 +177,14 @@ export default {
       this.username = "username";
       window.location.reload();
     },
+    handleAccount() {
+      this.modal = !this.modal
+      this.modalNotify = false
+    },
+    handleNotify() {
+      this.modalNotify = !this.modalNotify
+      this.modal = false
+    }
   },
 };
 </script>

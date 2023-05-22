@@ -4,8 +4,7 @@
       <!-- โค้ดสำหรับแสดงหน้าโหลด -->
       <div class="loading" style="color: rgb(253, 186, 116);">Loading...</div>
     </div>
-    <div class="container mx-auto pt-10 flex justify-center items-center" v-else>
-
+    <div v-else class="container mx-auto pt-10 flex justify-center items-center">
       <form
         class="w-7/12 flex flex-col gap-6 mt-8 pt-16 justify-center items-center border rounded-xl drop-shadow-lg border-[#D2CFCF] p-8 px-20">
         <h1 class="text-3xl font-bold text-white tracking-wide mb-5">Log in</h1>
@@ -16,11 +15,13 @@
         <div class="flex justify-center items-center mt-4">
           <button type="submit" class="w-36 p-2 rounded-xl drop-shadow-lg bg-orange-300" @click="login">log in</button>
         </div>
-        <router-link to="/signuppage">Sign up</router-link>
+        <div class="flex justify-center">
+          <p class="tracking-wide text-white mb-2 mr-2">Don't have an account?</p>
+          <router-link to="/signuppage" class="tracking-wide text-orange-300"> SIGN UP</router-link>
+        </div>
         <div v-if="error" class="text-red-500">{{ error }}</div>
       </form>
     </div>
-
   </div>
 </template>
 

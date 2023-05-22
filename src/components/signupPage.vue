@@ -49,7 +49,10 @@
               <button type="submit" class="w-1/2 p-2 rounded-xl drop-shadow-lg bg-orange-300" @click="signup">Create an
                 account</button>
             </div>
-            <router-link to="/loginpage">Sign in</router-link>
+            <div class="flex justify-center">
+              <p class="tracking-wide text-white mb-2 mr-2">Already have an account?</p>
+              <router-link to="/loginpage" class="tracking-wide text-orange-300"> SIGN IN</router-link>
+            </div>
           </form>
         </div>
       </div>

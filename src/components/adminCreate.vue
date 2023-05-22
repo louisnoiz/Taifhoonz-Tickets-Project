@@ -1,21 +1,25 @@
 <template class="w-full h-full">
-    <div v-if="handleCreate" class="w-full opacity-100 absolute h-full bg-gray-500/30">
-        <div class="w-full min-h-screen relative flex justify-center items-center">
-            <div class="w-3/12 p-5 bg-white rounded flex flex-col gap-4 justify-center items-center py-10">
-                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"
-                    class="bi bi-check-circle" viewBox="0 0 16 16" id="IconChangeColor">
-                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-                        id="mainIconPathAttribute" fill="#24e54b"></path>
-                    <path
-                        d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"
-                        id="mainIconPathAttribute" fill="#24e54b"></path>
-                </svg>
-                <p class="text-2xl">สำเร็จ</p>
-                <p>คอนเสิร์ตใหม่ได้ถูกสร้างขึ้นเรียบร้อย</p>
-                <router-link to="/admin" class="w-full">
-                    <button class="w-full mt-4 rounded text-white bg-green-400 p-3">ปิด</button>
-                </router-link>
+    <div v-if="handleCreate" class="w-full absolute h-max bg-gray-500/30">
+        <div class="flex flex-col">
+            <div class="w-full h-24 "></div>
+            <div class="w-full min-h-screen relative flex justify-center items-center">
+                <div class="w-3/12 p-5 bg-white rounded flex flex-col gap-4 justify-center items-center py-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"
+                        class="bi bi-check-circle" viewBox="0 0 16 16" id="IconChangeColor">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                            id="mainIconPathAttribute" fill="#24e54b"></path>
+                        <path
+                            d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"
+                            id="mainIconPathAttribute" fill="#24e54b"></path>
+                    </svg>
+                    <p class="text-2xl">Successful</p>
+                    <p>New concert has been created.</p>
+                    <router-link to="/admin" class="w-full">
+                        <button class="w-full mt-4 rounded text-white bg-green-400 p-3">Close</button>
+                    </router-link>
+                </div>
             </div>
+            <div class="w-full h-96"></div>
         </div>
     </div>
     <div class="w-full min-h-screen">
@@ -258,5 +262,6 @@ a {
 
 input[type='file']:focus+.file-label {
     box-shadow: 0 0 0 4px #bae6fd;
-}</style>
+}
+</style>
   
