@@ -11,26 +11,27 @@
         <div className="w-full grid mb-5 rounded-md shadow-md hover:bg-gray-700/10" id="app"
           v-for="(item, index) in this.namelist" :key="index">
           <a href="" class="">
-            <router-link to="/detail">
+            <router-link :to="`/detail/${item.id}`">
               <div class="w-full py-5 flex flex-col gap-4 justify-center items-center">
-                <div class="bg-cover bg-center w-auto h-96" :style="img_concert">
-                  <div class="w-72 h-72"></div>
-                </div>
+                 <!-- add path photo -->
+                <img class="w-48 h-48 rounded-full" :src="`http://localhost:3000/${item.image}`" alt="Image" />
                 <p class="flex flex-col gap-3 px-11">
                   <span class="font-bold text-white text-left">
                     {{ item.name }}
                   </span>
                   <span class="font-base text-sm text-white text-left">
-                    Date: {{ item.date }}
+                    {{ item.details }}
                   </span>
                   <span class="font-base text-sm text-white text-left">
-                    Time: {{ item.time }}
+                    Date: {{ formatDate(item.dateStart) }} - {{ formatDate(item.dateEnd) }}
                   </span>
                   <span class="font-base text-sm text-white text-left">
-                    Local: {{ item.local }}
+                    Artist: {{ item.artist }}
+                  </span>
+                  <span class="font-base text-sm text-white text-left">
+                    Location: {{ item.location }}
                   </span>
                 </p>
-
               </div>
             </router-link>
           </a>
@@ -43,7 +44,8 @@
 <script>
 // import { RouterLink } from "vue-router";
 // import HelloWorld from './components/HelloWorld.vue'
-// import axios from 'axios';
+import axios from 'axios';
+import moment from 'moment';
 
 export default {
   name: "allConcert",
@@ -141,14 +143,19 @@ export default {
       ],
     };
   },
-  // mounted() {
-  //   axios
-  //   .get('http://localhost:3000/allConcert')
-  //   .then((res) => {
-  //     this.namelist = res.data;
-  //   })
-  // },
-  methods: {},
+  mounted() {
+    axios
+      .get('http://localhost:3000/getAllConcert')
+      .then((res) => {
+        this.namelist = res.data;
+      })
+  },
+  methods: {
+    formatDate(dateString) {
+      const date = moment(dateString);
+      return date.format('DD-MM-YYYY');
+    }
+  },
 };
 </script>
   
@@ -161,7 +168,5 @@ img {
   width: 20%;
   height: 20%;
 }
-
-.app {}
 </style>
   

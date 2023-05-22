@@ -9,32 +9,18 @@
         <div class="w-full px-8">
           <div class="flex flex-col gap-4 py-4 mt-4 text-left">
             <div class="text-3xl font-bold text-white tracking-wide">
-              LEO presents ‘Move On จนโคจรมาเจอกัน คอนเสิร์ต’
+              {{ concert.name }}
             </div>
             <p class="w-full flex flex-row">
               <span class="w-1/2 font-base text-lg text-white text-left">
-                Date: 22 - 24 APR 2023
-              </span>
-              <span class="w-1/2 font-base text-lg text-white text-left">
-                Time: 14:00 - 20:00
+                Date: {{ formatDate(concert.dateStart) }} - {{ formatDate(concert.dateEnd) }}
               </span>
             </p>
-
             <span class="w-1/2 font-base text-lg text-white text-left">
-              Price: 2500 - 4000 THB
-            </span>
-            <span class="w-1/2 font-base text-lg text-white text-left">
-              Local: Mhor Chit 2
+              Location: {{concert.location}}}
             </span>
             <p class="text-gray-700 text-white tracking-wide text-justify indent-14">
-              ปี 2023 นี้เป็นปีแห่งความปัง เราได้โคจรมาเจอกันอีกครั้งกับ LEO
-              presents ‘Move On จนโคจรมาเจอกัน คอนเสิร์ต’ 💫 ไม่ว่าราศีไหน
-              ก็จะได้พบกับเหล่าศิลปินที่ฟังแล้วอินไปถึงจักรวาล ✨ INK WARUNTORN
-              | NONT TANONT | BOWKYLION | JEFF SATUR | EARTH PATRAVEE | TATTOO
-              COLOUR | ZEAL | ETC. | POLYCAT | SLOT MACHINE | SCRUBB | THREE MAN
-              DOWN | TILLY BIRDS | SLAPKISS | PAPER PLANES | HYBS | SAFEPLANET |
-              DEPT 2 วัน 6 รอบการแสดง 18 ศิลปิน วันเสาร์ที่ 10 มิถุนายน 2566
-              รอบที่ 1 เวลา 14.00 THE SUN ☀️
+              {{ concert.details }}
             </p>
           </div>
         </div>        
@@ -76,6 +62,8 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
+
 export default {
   data() {
     return {
@@ -92,13 +80,17 @@ export default {
   mounted(){
     const id = this.$route.params.concertId
     axios
-    .get("http://localhost:3000/concertById/"+id)
+    .get("http://localhost:3000/getConcertById/"+id)
     .then((res) => {
-      this.concert = res.data[0];
+      this.concert = res.data;
     })
   },
 
   methods: {
+    formatDate(dateString) {
+      const date = moment(dateString);
+      return date.format('DD-MM-YYYY');
+    },
     selectRound(round) {
       this.selectedRound = round;
       this.isOpen = false;
