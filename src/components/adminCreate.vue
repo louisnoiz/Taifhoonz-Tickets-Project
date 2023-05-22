@@ -54,18 +54,18 @@
                         <!-- <div class="flex flex-row gap-4">
                             <div class="w-1/2">
                                 <label class="block text-lg mb-1">Time Start :</label>
-                                <input type="time" name="timeStart" id="timeStart" v-model=""
+                                <input type="time" name="startTime" id="startTime" v-model=""
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                             <div class="w-1/2">
                                 <label class="block text-lg mb-1">Time End :</label>
-                                <input type="time" name="timeStart" id="timeStart" v-model=""
+                                <input type="time" name="startTime" id="startTime" v-model=""
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                         </div> -->
                         <div class="w-full">
                             <label class="block text-lg mb-1">Location :</label>
-                            <textarea type="text" name="localtion" id="localtion" row="2" v-model="localtion"
+                            <textarea type="text" name="location" id="location" row="2" v-model="location"
                                 class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full "></textarea>
                         </div>
                     </div>
@@ -94,12 +94,12 @@
                             </div>
                             <div class="w-3/12 flex items-center">
                                 <label class="w-36">Time Start : </label>
-                                <input type="time" name="dateEnd" id="dateEnd" v-model="item.timeStart"
+                                <input type="time" name="dateEnd" id="dateEnd" v-model="item.startTime"
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                             <div class="w-3/12 flex items-center">
                                 <label class="w-36">Time End : </label>
-                                <input type="time" name="dateEnd" id="dateEnd" v-model="item.timeEnd"
+                                <input type="time" name="dateEnd" id="dateEnd" v-model="item.endTime"
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                             <div class="w-1/12 flex items-center">
@@ -132,11 +132,11 @@ export default {
         return {
             name: '',
             details: '',
-            localtion: '',
+            location: '',
             artist: '',
             dateStart: '',
             dateEnd: '',
-            rounds: [{ date: "", timeStart: "", timeEnd: "" }],
+            rounds: [{ date: "", startTime: "", endTime: "" }],
             filePreview: '',
             fileName: '',
             image: null,
@@ -144,18 +144,18 @@ export default {
     },
     methods: {
         addRound() {
-            this.rounds.push({ date: "", timeStart: "", timeEnd: "" })
+            this.rounds.push({ date: "", startTime: "", endTime: "" })
         },
         create() {
             let formData = new FormData();
             formData.append('image', this.image);
             formData.append('name', this.name);
             formData.append('details', this.details);
-            formData.append('localtion', this.localtion);
+            formData.append('location', this.location);
             formData.append('dateStart', this.dateStart);
             formData.append('dateEnd', this.dateEnd);
             formData.append('artist', this.artist);
-            formData.append('rounds', this.rounds);
+            formData.append('rounds', JSON.stringify(this.rounds));
 
             axios.post('http://localhost:3000/createConcert', formData)
                 .then(res => {
