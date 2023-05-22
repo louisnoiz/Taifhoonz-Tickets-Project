@@ -58,11 +58,15 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 export default {
     // components: { FileComponent },
     data() {
         return {
+            ticket: [],
+            id: null,
             cssProps: {
                 backgroundImage: `url(${require("../assets/wall.png")})`,
             },
@@ -152,11 +156,28 @@ export default {
         };
     },
     methods: {
-
+        viewTicket(id) {
+            axios.get(`http://localhost:3000/getTicketByUserId/${id}`)
+                .then((res) => {
+                    this.ticket = res.data;
+                    console.log(this.ticket);
+                })
+        }
+    },
+    mounted() {
+        if (localStorage.getItem('token')) {
+            const token = localStorage.getItem('token');
+            const decoded = jwtDecode(token);
+            this.id = decoded.payload.id;
+            this.ticket = this.viewTicket(this.id);
+            console.log(this.ticket);
+        }
     },
 };
 </script>
-<style>.card {
+<style>
+.card {
     width: 75%;
     height: 100%;
-}</style>
+}
+</style>
