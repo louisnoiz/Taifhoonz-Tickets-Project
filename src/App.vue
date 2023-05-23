@@ -125,7 +125,7 @@
         </div>
       </div>
     </div>
-    <router-view :key="$route.fullPath" />
+    <router-view :key="$route.fullPath" @auth-change="onAuthChange" />
   </div>
 </template>
 
@@ -144,9 +144,10 @@ export default {
     return {
       modal: false,
       modalNotify: false,
-      fullname: "firstname lastname",
-      email: "email@email.com",
-      username: "username",
+      id:"",
+      fullname: "",
+      email: "",
+      username: "",
       testNameConcert: [
         { name: "something 1" },
         { name: "something 2" },
@@ -159,23 +160,33 @@ export default {
     };
   },
   mounted() {
-    if (localStorage.getItem("token")) {
-      const token = localStorage.getItem("token");
-      const decoded = jwtDecode(token);
-      this.username = decoded.payload.username;
-      this.fullname = decoded.payload.fullName;
-      this.email = decoded.payload.email;
-      console.log(decoded);
-    }
+    // if (localStorage.getItem("token")) {
+    //   const token = localStorage.getItem("token");
+    //   const decoded = jwtDecode(token);
+    //   this.username = decoded.payload.username;
+    //   this.fullname = decoded.payload.fullName;
+    //   this.email = decoded.payload.email;
+    //   console.log(decoded);
+    // }
+    this.onAuthChange();
   },
   methods: {
     logout() {
       localStorage.removeItem("token");
-      this.$router.push("/loginpage");
-      this.fullname = "firstname lastname";
-      this.email = "email@email.com";
+      this.$router.go("/loginpage");
+      this.fullname = "";
+      this.email = "";
       this.username = "username";
-      window.location.reload();
+    },
+    onAuthChange() {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const decoded = jwtDecode(token);
+        this.id = decoded.payload.id;
+        this.username = decoded.payload.username;
+        this.fullname = decoded.payload.fullName;
+        this.email = decoded.payload.email;
+      }
     },
     handleAccount() {
       this.modal = !this.modal
