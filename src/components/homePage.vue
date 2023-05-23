@@ -7,7 +7,7 @@
             {{ concert.name }}
           </p>
           <p class="text-white tracking-wide mt-3">{{ concert.details }}</p>
-          <p class="text-white tracking-wide">Show Date : {{ concert.dateStart }}</p>
+          <p class="text-white tracking-wide">Show Date : {{ new Date(concert.dateStart).toDateString() }}</p>
           <p class="text-white tracking-wide mb-4">Location : {{ concert.location }}</p>
           <div class="mb-6">
             <router-link :to="`/detail/${concert.id}`"><a
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="w-full my-10 flex justify-center">
-          <img class="w-96 h-auto rounded" src="../assets/concert.png" alt="Image" />
+          <img class="w-96 h-auto rounded" :src="`http://localhost:3000/${concert.image}`" alt="Image" />
         </div>
       </div>
     </div>

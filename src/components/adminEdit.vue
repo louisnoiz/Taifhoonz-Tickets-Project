@@ -10,7 +10,7 @@
                 </div>
                 <div v-else class="w-full flex justify-end items-center px-10">
                     <button class="w-24 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded text-lg  tracking-wide"
-                        @click="() => SaveData()">
+                        @click="SaveData()">
                         Save
                     </button>
                     <button class="w-24 ml-10 bg-gray-500 hover:bg-gray-600 text-white p-2 rounded text-lg tracking-wide"
@@ -27,7 +27,7 @@
                 <div v-else class="w-full flex flex-col mt-4 py-4">
                     <label class="text-lg text-left block mb-1 text-white">Image :</label>
                     <input id="file-input" class="hide-file-input hidden" type="file" accept="image/*"
-                        @change="() => onFileChange($event)" />
+                        @change="onFileChange($event)" />
                     <label
                         class="w-full h-96 bg-white p-3 mr-4 flex flex-col gap-4 justify-center items-center border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100"
                         for="file-input">
@@ -128,7 +128,7 @@
                         className="h-56 py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full"></textarea>
                 </div>
                 <div class="w-full mt-2 px-20 text-left flex flex-col gap-4">
-                    <label class="text-lg block w-36">Round :</label>
+                    <label class="text-lg block w-36 text-white">Round :</label>
                     <div v-for="item, index in rounds" :key="index"
                         class="bg-white w-full flex rounded border border-gray-300 items-center">
                         <div class="bg-white w-full flex flex-row gap-10 p-10">
@@ -176,16 +176,16 @@ export default {
     data() {
         return {
             isOpen: false,
-            selectedRound: { value: null, label: "Select Round and Time" },
             concert: {},
             rounds: [],
             handleEdit: true,
             filePreview: '',
             fileName: '',
-            test: ""
+            test: "",
+            image: null,
         };
     },
-    mounted() {
+    beforeCreate() {
         const id = this.$route.params.concertId
         axios
             .get("http://localhost:3000/getConcertById/" + id)
@@ -193,6 +193,7 @@ export default {
                 this.concert = res.data;
                 this.concert.dateStart = moment(this.concert.dateStart).format('YYYY-MM-DD');
                 this.concert.dateEnd = moment(this.concert.dateEnd).format('YYYY-MM-DD');
+                this.filePreview = `http://localhost:3000/${this.concert.image}`
             })
 
         axios.get("http://localhost:3000/getRoundByConcertId/" + id)
@@ -241,11 +242,26 @@ export default {
             }
         },
         SaveData() {
-            axios.post('http://localhost:3000/createConcert', "")
-                .then(res => {
-                    console.log(res);
-                }).catch(err => {
-                    console.log(err);
+            let formData = new FormData();
+            if (this.image) {
+                formData.append('image', this.image);
+            }
+            else {
+                formData.append('image', null);
+            }
+            formData.append('name', this.concert.name);
+            formData.append('details', this.concert.details);
+            formData.append('location', this.concert.location);
+            formData.append('dateStart', this.concert.dateStart);
+            formData.append('dateEnd', this.concert.dateEnd);
+            formData.append('artist', this.concert.artist);
+            formData.append('rounds', JSON.stringify(this.rounds));
+            axios.put("http://localhost:3000/updateConcert/" + this.$route.params.concertId, formData)
+                .then((res) => {
+                    console.log(res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
                 })
         }
     },
