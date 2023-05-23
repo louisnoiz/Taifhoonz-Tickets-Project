@@ -110,28 +110,29 @@
     <div v-if="this.modalNotify">
       <div class="w-full h-max flex justify-end items-start absolute z-10">
         <div class="container w-1/5 mt-1 p-3 mr-1 drop-shadow-lg border tracking-wide text-start rounded-lg bg-white">
-          <div v-for="item, index in testNameConcert" :key="index">
-            <router-link to="/detail" @click="() => handleNotify()">
+          <div v-for="item, index in notification" :key="index">
+            <router-link :to="`/detail/${item.concertId}`" @click="handleNotify">
               <div v-if="index < 6 && index !== 5" class="border-b p-2 border-gray-600">
-                {{ item.name }}
+                {{ item.description }}
                 <!-- For new concert -->
                 <span v-if="index === 0" class="text-green-500">New !!</span>
               </div>
               <div v-else-if="index === 5" class=" p-2 border-gray-600">
-                {{ item.name }}
+                {{ item.description }}
               </div>
             </router-link>
           </div>
         </div>
       </div>
     </div>
-    <router-view :key="$route.fullPath" />
+    <router-view :key="$route.fullPath" @auth-change="onAuthChange" />
   </div>
 </template>
 
 <script>
 import { RouterLink } from "vue-router";
 import jwtDecode from "jwt-decode";
+import axios from 'axios';
 // import HelloWorld from './components/HelloWorld.vue'
 
 export default {
@@ -144,9 +145,11 @@ export default {
     return {
       modal: false,
       modalNotify: false,
-      fullname: "firstname lastname",
-      email: "email@email.com",
-      username: "username",
+      id:"",
+      fullname: "",
+      email: "",
+      username: "",
+      notification:null,
       testNameConcert: [
         { name: "something 1" },
         { name: "something 2" },
@@ -166,16 +169,39 @@ export default {
       this.fullname = decoded.payload.fullName;
       this.email = decoded.payload.email;
       console.log(decoded);
+      this.onAuthChange();
     }
   },
   methods: {
     logout() {
       localStorage.removeItem("token");
-      this.$router.push("/loginpage");
-      this.fullname = "firstname lastname";
-      this.email = "email@email.com";
+      this.$router.go("/loginpage");
+      this.fullname = "";
+      this.email = "";
       this.username = "username";
-      window.location.reload();
+    },
+    onAuthChange() {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const decoded = jwtDecode(token);
+        this.id = decoded.payload.id;
+        this.username = decoded.payload.username;
+        this.fullname = decoded.payload.fullName;
+        this.email = decoded.payload.email;
+        this.GetNotification();
+      }
+    },
+    GetNotification(){
+      axios.get('http://localhost:3000/getAllNotification')
+      .then((res) => {
+          // console.log(res);
+          this.notification = res.data
+          console.log(this.notification);
+        })
+        .catch((err) => {
+          console.log(err)
+          this.notification = null;
+        })
     },
     handleAccount() {
       this.modal = !this.modal

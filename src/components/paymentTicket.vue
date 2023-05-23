@@ -27,29 +27,29 @@
     </div>
     <div class="w-full min-h-screen bg-gradient-to-b from-[#2c2c38] via-[#284265] to-[#2c2c38]">
         <div class="container mx-auto py-10 flex flex-col justify-center items-center ">
-            <h1 class="font-bold text-3xl mt-2 text-white pb-10 tracking-wide">รายการชำระเงิน</h1>
+            <h1 class="font-bold text-3xl mt-2 text-white pb-10 tracking-wide">Payment</h1>
             <div class="w-10/12 flex flex-row gap-10 px-20 mt-2">
                 <div class="w-7/12 mt-4 px-8 border-2 rounded py-4 text-white text-xl tracking-wide">
                     <div class="flex flex-col gap-4 text-left">
                         <div class="w-full flex flex-row items-center">
-                            <p class="w-11/12 font-semibold underline underline-offset-4">รายละเอียดบัตร</p>
+                            <p class="w-11/12 font-semibold underline underline-offset-4">Ticket Details</p>
                             <p class="w-1/12 text-end mt-1">X 1</p>
                         </div>
                         <p class="text-2xl tracking-wide font-semibold">TMD's Something Concert</p>
-                        <p class="text-xl tracking-wide">ชื่อ : Sarun Viwatborvornwong</p>
+                        <p class="text-xl tracking-wide">Name : Sarun Viwatborvornwong</p>
                         <div class="w-full flex flex-row gap-4 items-center">
-                            <p>วันแสดง : 24 เมษายน 2566</p>
+                            <p>Date : 24 เมษายน 2566</p>
                             <div class="text-lg tracking-wide border text-center px-3 rounded-xl">Round 1</div>
                         </div>
-                        <p>เวลา : 15.00 - 17.00</p>
-                        <p>โซนที่นั่ง : Zone D (Purple)</p>
+                        <p>Time : 15.00 - 17.00</p>
+                        <p>Zone : D (Purple)</p>
                         <div class="border-t py-3 text-right">
-                            <p class="text-2xl">รวม <span class="text-yellow-400">550 THB</span></p>
+                            <p class="text-2xl">Total <span class="text-yellow-400">550 THB</span></p>
                         </div>
                     </div>
                 </div>
                 <div class="w-5/12 mt-4 flex flex-col gap-5 items-center">
-                    <p class="text-white text-start text-xl font-semibold tracking-wide">ช่องทางการชำระเงิน</p>
+                    <p class="text-white text-start text-xl font-semibold tracking-wide">Payment Method</p>
                     <div class="w-full flex flex-col text-start gap-5">
                         <div class="bg-white py-3 px-4 rounded flex flex-row items-center gap-5">
                             <img class="w-2/12 h-auto rounded" src="../assets/kasikorn.png" alt="Image" />
@@ -68,7 +68,7 @@
             </div>
             <div class="w-5/12 border-b-2 py-5 my-5 border-dashed"></div>
             <div class="w-6/12 flex flex-col gap-5 px-20 py-2 mt-4 text-white justify-center">
-                <p class="text-xl tracking-wide">รายละเอียดการชำระเงิน</p>
+                <p class="text-xl tracking-wide">Payment Confirmation</p>
                 <div class="mb-1 w-full">
                     <label class="block text-start mb-1 tracking-wide">Full Name :</label>
                     <input type="text" class="w-full text-black p-2 rounded" value="123" />
@@ -109,12 +109,12 @@
                     </div>
                 </div>
                 <div class="w-full flex flex-row gap-4">
-                    <router-link to="/"
+                    <router-link to="/detail"
                         class="w-1/2 mt-5 text-center px-10 py-4 bg-gray-500 tracking-wide text-white font-bold rounded hover:bg-gray-600">
-                        ยกเลิก </router-link>
+                        Cancel </router-link>
                     <button @click="() => handleConfirm = true"
                         class="w-1/2 mt-5 text-center px-10 py-4 bg-red-500 tracking-wide text-white font-bold rounded hover:bg-red-600">
-                        ยืนยันการชำระเงิน
+                        Confirm
                     </button>
                 </div>
 

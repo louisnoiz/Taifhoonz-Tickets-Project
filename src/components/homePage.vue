@@ -1,8 +1,8 @@
 <template class="w-full h-screen">
   <div class="bg-[#2c2c38] w-full">
     <div class="w-full h-screen" :style="cssProps">
-      <div class="container mx-auto flex flex-row gap-5 justify-center items-center">
-        <div class="w-full py-36 px-5 my-10 flex flex-col gap-3 text-left">
+      <div class="container mx-auto flex flex-row gap-5 pt-10 justify-center items-center">
+        <div class="w-full py-36 ml-10 px-5 mb-10 mt-20 flex flex-col gap-3 text-left">
           <p class="text-white text-5xl font-semibold tracking-wide">
             {{ concert.name }}
           </p>
@@ -30,12 +30,10 @@
 
 <script>
 import { RouterLink } from "vue-router";
-// import HelloWorld from './components/HelloWorld.vue'
 import axios from 'axios';
 export default {
   name: "homePage",
   components: {
-    //   // HelloWorld
     RouterLink,
   },
   data() {
