@@ -20,7 +20,6 @@
           <p class="tracking-wide text-white mb-2 mr-2">Don't have an account?</p>
           <router-link to="/signuppage" class="tracking-wide text-orange-300"> SIGN UP</router-link>
         </div>
-        
       </form>
     </div>
   </div>
