@@ -1,7 +1,7 @@
 <template class="w-full h-full">
-    <div class="w-full min-h-screen bg-gradient-to-b from-[#2c2c38] via-[#284265] to-[#2c2c38]">
+    <div  class="w-full min-h-screen bg-gradient-to-b from-[#2c2c38] via-[#284265] to-[#2c2c38]">
         <div class="container mx-auto py-10 flex flex-col justify-center items-center">
-            <div class="w-full flex flex-col gap-4 px-10 h-24 text-start">
+            <div id="ticket" class="w-full flex flex-col gap-4 px-10 h-24 text-start">
                 <label class="text-2xl text-white font-semibold tracking-wide">My Tickets</label>
                 <div class="w-full mb-5 border-b border-gray-300"></div>
                 <div class="w-full flex flex-col gap-8 justify-center items-center">

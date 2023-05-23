@@ -41,6 +41,7 @@ export default {
       concert: {},
       cssProps: {
         backgroundImage: `url(${require("../assets/wall.png")})`,
+        height: "100%",
       },
     };
   },

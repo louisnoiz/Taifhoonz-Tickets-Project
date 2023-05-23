@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="wrapper">
     <nav class="flex items-center justify-between flex-wrap bg-[#2c2c38] border-b border-b-gray-500 p-6 ">
       <div class="flex items-center flex-shrink-0 text-white mr-6">
         <img class="fill-current h-8 w-8 mr-2" src="./assets/taifhoonz_logo.png" alt="" />
@@ -209,6 +209,23 @@ export default {
 
 body {
   background-color: rgb(253, 252, 236);
+}
+
+#wrapper {
+  width: auto;
+  background-color: #2c3e50;
+  background-image: linear-gradient(#2c2c38, #284265, #2c2c38);
+  height: 100%;
+}
+
+#ticket {
+  background-color: #2c3e50;
+  background-image: linear-gradient(#2c2c38, #284265, #2c2c38);
+  height: 100%;
+}
+
+#imgshow {
+  height: 100%;
 }
 
 .ticketbtn {
