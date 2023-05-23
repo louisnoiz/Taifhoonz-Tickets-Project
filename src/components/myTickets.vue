@@ -13,18 +13,16 @@
                                 <p class="text-2xl font-semibold tracking-wide">{{ item.concert.name }}</p>
                                 <p class="text-gray-500">{{ item.concert.location }}</p>
                                 <div class="w-10/12 border-y-2 py-2 border-dashed border-[#284265] flex flex-row gap-2">
-                                    <div class="w-4/12 font-semibold text-lg p-2 flex justify-center items-center">
-                                        {{ new Date(item.round.date).toDateString()}}
+                                    <div class="w-6/12 font-semibold text-lg p-2 flex flex-col justify-center items-center border-r-2 border-dashed border-[#284265]">
+                                        <p class="text-lg font-semibold text-gray-500">DATE</p>
+                                        <p class="text-2xl font-semibold">{{ new Date(item.round.date).toDateString()}}</p>
                                     </div>
-                                    <div class="w-3/12 p-2 px-3 flex flex-col border-x-2 border-dashed border-[#284265]">
-                                        <p class="text-lg font-semibold text-gray-500">ROUND</p>
-                                        <p class="text-2xl font-semibold">1</p>
-                                    </div>
-                                    <div class="w-5/12 p-2 pr-3 flex flex-col">
+                                    <div class="w-6/12 p-2 pr-3 flex flex-col">
                                         <p class="text-lg font-semibold text-gray-500">TIME</p>
                                         <p class="text-2xl font-semibold">{{ new Date(item.round.startTime).toTimeString().slice(0, 5)}} - {{ new Date(item.round.endTime).toTimeString().slice(0, 5)}}</p>
                                     </div>
                                 </div>
+                                <button v-if="item.payment.status === 'PENDING'" @click="() => payment(item.paymentId)" class="border-2 px-4 py-1 mt-1 text-lg rounded border-orange-400 bg-orange-400 text-white font-semibold tracking-wide hover:bg-orange-500 hover:border-orange-500">Pay now</button>
                             </div>
                             <div class="w-2/12 px-2 ml-3 flex flex-col gap-2">
                                 <div class="flex flex-row gap-4 items-center">
@@ -72,6 +70,9 @@ export default {
         };
     },
     methods: {
+        payment(id) {
+            this.$router.push({ name: 'buyTicket', params: { paymentId: id } })
+        }
     },
     beforeCreate() {
         if (localStorage.getItem('token')) {

@@ -17,9 +17,7 @@
                         <p>Thank you for purchasing.</p>
                         <p>Your payment was successful.</p>
                     </div>
-                    <router-link to="/myticket" class="w-full">
-                        <button class="w-full mt-4 rounded text-white bg-green-400 p-3">See Ticket</button>
-                    </router-link>
+                        <button @click="() => this.$router.push('/myticket')" class="w-full mt-4 rounded text-white bg-green-400 p-3">See Ticket</button>
                 </div>
             </div>
             <div class="w-full h-52 "></div>
@@ -85,7 +83,7 @@
                 <div class="w-full">
                     <label class="text-lg text-left block mb-1 tracking-wide">Image :</label>
                     <input id="file-input" class="hide-file-input hidden" type="file" accept="image/*"
-                        @change="onFileChange($event)" />
+                        @change="() => onFileChange($event)" />
                     <div class="w-full flex items-center">
                         <label
                             class="bg-white p-3 mr-4 gap-3 flex items-center border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100"
@@ -108,10 +106,10 @@
                     </div>
                 </div>
                 <div class="w-full flex flex-row gap-4">
-                    <router-link to="/detail"
+                    <button @click="() => this.$router.push('/myticket')"
                         class="w-1/2 mt-5 text-center px-10 py-4 bg-gray-500 tracking-wide text-white font-bold rounded hover:bg-gray-600">
-                        Cancel </router-link>
-                    <button @click="confirm()"
+                        Cancel </button>
+                    <button @click="() => confirm()"
                         class="w-1/2 mt-5 text-center px-10 py-4 bg-red-500 tracking-wide text-white font-bold rounded hover:bg-red-600">
                         Confirm
                     </button>
