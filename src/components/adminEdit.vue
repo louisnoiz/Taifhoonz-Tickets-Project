@@ -25,64 +25,66 @@
                         src="https://res.theconcert.com/w_375,h_499,c_thumb/027c5eaa2474e2ed2093030ebf823a2d1/aw-resize-the-concert-01.jpg" />
                 </div>
                 <div v-else class="w-full flex flex-col mt-4 py-4">
-                    <label class="text-lg text-left block mb-1">Image :</label>
+                    <label class="text-lg text-left block mb-1 text-white">Image :</label>
                     <input id="file-input" class="hide-file-input hidden" type="file" accept="image/*"
-                        @change="onFileChange($event)" />
+                        @change="() => onFileChange($event)" />
                     <label
                         class="w-full h-96 bg-white p-3 mr-4 flex flex-col gap-4 justify-center items-center border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100"
                         for="file-input">
                         <!-- Show Image -->
-                <img v-if="filePreview" :src="filePreview" alt="fileName" style="max-height: 256px">
-                        <p>Upload a file</p>
-                        <p class="text-gray-500">{{ fileName ? fileName : "No file chosen" }}</p>
+                        <img v-if="filePreview" :src="filePreview" alt="fileName" style="max-height: 300px">
+                        <p v-if="!filePreview">Upload a file</p>
+                        <p v-if="!filePreview" class="text-gray-500">{{ fileName ? fileName : "No file chosen" }}</p>
                     </label>
                 </div>
                 <div class="w-full px-8">
                     <div v-if="!handleEdit" class="flex flex-col gap-4 py-4 mt-4 text-left">
-                        <div class="text-3xl font-bold tracking-wide">
+                        <div class="text-3xl font-bold tracking-wide text-white">
                             {{ concert.name }}
                         </div>
-                        <span class="w-full font-base text-lg text-left">
+                        <span class="w-full font-base text-lg text-left text-white">
                             Artist : {{ concert.artist }}
                         </span>
-                        <span class="w-full font-base text-lg text-left">
+                        <span class="w-full font-base text-lg text-left text-white">
                             Date : {{ formatDate(concert.dateStart) }} - {{ formatDate(concert.dateEnd) }}
                         </span>
-                        <span class="w-full font-base text-lg text-left">
+                        <span class="w-full font-base text-lg text-left text-white">
                             Local : {{ concert.location }}
                         </span>
-                        <p class="text-gray-700 tracking-wide text-justify indent-14">
+                        <p class="text-gray-700 tracking-wide text-justify indent-14 ">
                             {{ concert.details }}
                         </p>
                     </div>
                     <div v-else class="flex flex-col gap-4 py-4 mt-4 text-left">
                         <div class="w-full">
-                            <label class="block text-lg mb-1">Name :</label>
+                            <label class="block text-lg mb-1 text-white">Concert Name :</label>
                             <textarea type="text" name="name" id="name" row="2" v-model="concert.name"
                                 class="h-18 py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full "></textarea>
                         </div>
+                        <div class="w-full">
+                            <label class="block text-lg mb-1 text-white">Artist :</label>
+                            <input type="text" name="artist" id="artist" row="2" v-model="concert.artist"
+                                class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
+                        </div>
                         <div class="flex flex-row gap-4">
                             <div class="w-1/2">
-                                <label class="block text-lg mb-1">Date Start :</label>
-                                <input type="date" name="dateStart" id="dateStart" v-model="date"
+                                <label class="block text-lg mb-1 text-white">Date Start :</label>
+                                <input type="date" name="dateStart" id="dateStart" v-model="concert.dateStart"
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                             <div class="w-1/2">
-                                <label class="block text-lg mb-1">Date End :</label>
-                                <input type="date" name="dateStart" id="dateStart" v-model="date"
+                                <label class="block text-lg mb-1 text-white">Date End :</label>
+                                <input type="date" name="dateStart" id="dateStart" v-model="concert.dateEnd"
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                         </div>
                         <div class="w-full">
-                            <label class="block text-lg mb-1">Location :</label>
+                            <label class="block text-lg mb-1 text-white">Location :</label>
                             <textarea type="text" name="localtion" id="localtion" row="3" v-model="concert.location"
-                                class="h-24 py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full "></textarea>
+                                class="h-20 py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full "></textarea>
                         </div>
                     </div>
                 </div>
-
-                <!-- Show Image -->
-                <!-- <img v-if="filePreview" :src="filePreview" alt="fileName" style="max-height: 256px"> -->
 
             </div>
             <div v-if="!handleEdit" class="w-full mt-10 flex flex-col gap-4">
@@ -121,9 +123,8 @@
             </div>
             <div v-else class="w-full flex flex-col gap-4">
                 <div class="w-full px-20 text-left">
-                    <label class="text-lg block mb-1">Detail :</label>
-                    <textarea name="detail" id="detail"
-                    v-model="concert.details"
+                    <label class="text-lg block mb-1 text-white">Detail :</label>
+                    <textarea name="detail" id="detail" v-model="concert.details"
                         className="h-56 py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full"></textarea>
                 </div>
                 <div class="w-full mt-2 px-20 text-left flex flex-col gap-4">
@@ -134,29 +135,30 @@
                             <div class="w-1/12 flex items-center">Round {{ index + 1 }}</div>
                             <div class="w-3/12 flex items-center">
                                 <label class="w-24">Date : </label>
-                                <input type="date" name="date" id="date" v-model="date"
+                                <input type="date" name="date" id="date" v-model="item.date"
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                             <div class="w-3/12 flex items-center">
                                 <label class="w-36">Time Start : </label>
-                                <input type="time" name="dateEnd" id="dateEnd" v-model="concert.startTime"
+                                <input type="time" name="startTime" id="startTime" v-model="item.startTime"
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                             <div class="w-3/12 flex items-center">
                                 <label class="w-36">Time End : </label>
-                                <input type="time" name="dateEnd" id="dateEnd" v-model="date"
+                                <input type="time" name="endTime" id="endTime" v-model="item.endTime"
                                     class="py-2 px-3 border border-gray-300 focus:border-yellow-300 focus:outline-none focus:ring focus:ring-primary-dark/10 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full " />
                             </div>
                             <div class="w-1/12 flex items-center">
-                                <button @click="() => deleteRound(index)" class="shadow-sm bg-blue-500 hover:bg-blue-600 rounded w-24 py-2">
+                                <button @click="() => deleteRound(index)"
+                                    class="shadow-sm bg-blue-500 hover:bg-blue-600 rounded w-24 py-2">
                                     <p class="text-lg text-white">Delete</p>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="w-full flex justify-end">
-                        <button class="bg-orange-300/90 hover:bg-orange-400/90 shadow-sm rounded py-2 w-36"
-                        @click="() => addRound()">
+                        <button class="bg-orange-300 hover:bg-orange-400/90 shadow-sm rounded py-2 w-36"
+                            @click="() => addRound()">
                             <p class="text-lg">Add Round</p>
                         </button>
                     </div>
@@ -180,8 +182,7 @@ export default {
             handleEdit: true,
             filePreview: '',
             fileName: '',
-            // dateStart: "",
-            // dateEnd: this.concert?.dateEnd
+            test: ""
         };
     },
     mounted() {
@@ -190,14 +191,18 @@ export default {
             .get("http://localhost:3000/getConcertById/" + id)
             .then((res) => {
                 this.concert = res.data;
+                this.concert.dateStart = moment(this.concert.dateStart).format('YYYY-MM-DD');
+                this.concert.dateEnd = moment(this.concert.dateEnd).format('YYYY-MM-DD');
             })
-            .catch((err) => {
-                console.log(err);
-            });
-              
+
         axios.get("http://localhost:3000/getRoundByConcertId/" + id)
             .then((res) => {
                 this.rounds = res.data;
+                this.rounds.map((item) => {
+                    item.date = moment(item.date).format('YYYY-MM-DD');
+                    item.startTime = moment(item.startTime).format('hh:mm');
+                    item.endTime = moment(item.endTime).format('hh:mm');
+                })
             })
             .catch((err) => {
                 console.log(err);
@@ -217,6 +222,7 @@ export default {
         },
         onFileChange($event) {
             const file = $event.target.files[0]
+            this.image = file
             const reader = new FileReader()
             if (file) {
                 reader.readAsDataURL(file)
@@ -235,10 +241,12 @@ export default {
             }
         },
         SaveData() {
-            // console.log("start = " + this.dateStart)
-            // console.log("end = " + this.dateStart)
-            // console.log("end = " + this.dateStart)
-            // console.log(this.concert)
+            axios.post('http://localhost:3000/createConcert', "")
+                .then(res => {
+                    console.log(res);
+                }).catch(err => {
+                    console.log(err);
+                })
         }
     },
 };
