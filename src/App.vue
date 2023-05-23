@@ -133,12 +133,10 @@
 import { RouterLink } from "vue-router";
 import jwtDecode from "jwt-decode";
 import axios from 'axios';
-// import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: "App",
   components: {
-    // HelloWorld
     RouterLink,
   },
   data() {
@@ -150,15 +148,6 @@ export default {
       email: "",
       username: "",
       notification: null,
-      testNameConcert: [
-        { name: "something 1" },
-        { name: "something 2" },
-        { name: "something 3" },
-        { name: "something 4" },
-        { name: "something 5" },
-        { name: "something 6" },
-        { name: "something 7" },
-      ]
     };
   },
   mounted() {
@@ -186,14 +175,13 @@ export default {
     GetNotification() {
       axios.get('http://localhost:3000/getAllNotification')
         .then((res) => {
-          // console.log(res);
           this.notification = res.data
-          console.log(this.notification);
         })
         .catch((err) => {
           console.log(err)
           this.notification = null;
         })
+
     },
     handleAccount() {
       this.modal = !this.modal
