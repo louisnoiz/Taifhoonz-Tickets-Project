@@ -3,7 +3,7 @@
     <div class="container mx-auto py-10 flex flex-col justify-center items-center ">
       <div class="w-full grid lg:grid-cols-2 grid-cols-1 gap-4 px-20 mt-2">
         <div class="w-full flex flex-col items-center">
-          <img class="w-80 object-cover rounded-lg mt-8" :src="`http://localhost:3000/${concert.image}`" />
+          <img class="w-80 object-cover rounded-lg mt-8" :src="`http://44.205.53.190:3000/${concert.image}`" />
         </div>
         <div class="w-full px-8">
           <div class="flex flex-col gap-4 py-4 mt-4 text-left">
@@ -84,14 +84,14 @@ export default {
   beforeCreate() {
     const id = this.$route.params.concertId
     axios
-      .get("http://localhost:3000/getConcertById/" + id)
+      .get("http://44.205.53.190:3000/getConcertById/" + id)
       .then((res) => {
         this.concert = res.data;
       })
       .catch((err) => {
         console.log(err);
       });
-    axios.get("http://localhost:3000/getRoundByConcertId/" + id)
+    axios.get("http://44.205.53.190:3000/getRoundByConcertId/" + id)
       .then((res) => {
         this.rounds = res.data;
       })

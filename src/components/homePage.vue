@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="w-full my-10 flex justify-center">
-          <img class="w-96 h-auto rounded" :src="`http://localhost:3000/${concert.image}`" alt="Image" />
+          <img class="w-96 h-auto rounded" :src="`http://44.205.53.190:3000/${concert.image}`" alt="Image" />
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@ export default {
     };
   },
   mounted() {
-    axios.get('http://localhost:3000/getLastConcert')
+    axios.get('http://44.205.53.190:3000/getLastConcert')
       .then((res) => {
         this.concert = res.data;
       })

@@ -130,7 +130,7 @@ export default {
           phone: this.state.phone,
           email: this.state.email
         };
-        axios.post('http://localhost:3000/signup', data)
+        axios.post('http://44.205.53.190:3000/signup', data)
           .then((res) => {
             console.log(res);
             this.$router.push('/loginpage');

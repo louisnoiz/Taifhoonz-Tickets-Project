@@ -16,9 +16,12 @@
           </svg>
         </button>
       </div>
+      <a v-if="admin == true" class="block mt-4 lg:inline-block lg:mt-0 text-lg hover:text-slate-900 mr-4">
+            <router-link to="/admin">Admin page</router-link>
+          </a>
       <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto text-white tracking-wide">
         <div class="text-sm lg:flex-grow">
-          <a class="block mt-4 lg:inline-block lg:mt-0 text-lg mr-4 hover:text-slate-900">
+          <!-- <a class="block mt-4 lg:inline-block lg:mt-0 text-lg mr-4 hover:text-slate-900">
             <router-link to="/">Home</router-link>
           </a>
           <a class="block mt-4 lg:inline-block lg:mt-0 mr-4 text-lg hover:text-slate-900">
@@ -40,11 +43,8 @@
             <router-link to="/allConcert">Concert</router-link>
           </a>
           <a class="block mt-4 lg:inline-block lg:mt-0 text-lg hover:text-slate-900 mr-4">
-            <router-link to="/admin">Admin page</router-link>
-          </a>
-          <a class="block mt-4 lg:inline-block lg:mt-0 text-lg hover:text-slate-900 mr-4">
             <router-link to="/edit">Admin edit</router-link>
-          </a>
+          </a> -->
         </div>
         <div class="flex justify-center items-center">
           <a class="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-slate-900 mr-4">
@@ -148,6 +148,8 @@ export default {
       email: "",
       username: "",
       notification: null,
+      role: "",
+      admin: false,
     };
   },
   mounted() {
@@ -169,11 +171,18 @@ export default {
         this.username = decoded.payload.username;
         this.fullname = decoded.payload.fullName;
         this.email = decoded.payload.email;
+        this.role = decoded.payload.role;
+        this.checkRole();
         this.GetNotification();
       }
     },
+    checkRole() {
+      if (this.role === "ADMIN") {
+        this.admin = true;
+      }
+    },
     GetNotification() {
-      axios.get('http://localhost:3000/getAllNotification')
+      axios.get('http://44.205.53.190:3000/getAllNotification')
         .then((res) => {
           this.notification = res.data
         })

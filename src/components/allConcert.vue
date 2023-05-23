@@ -2,10 +2,10 @@
   <div id="wrapper" class="w-full h-screen bg-gradient-to-b from-[#2c2c38] via-[#284265] to-[#2c2c38]">
     <div class="container mx-auto flex flex-col justify-center items-center">
       <div class="w-full flex justify-left pt-10">
-        <a href="" class="w-48 text-white text-xl hover:text-indigo-500 font-semibold underline underline-offset-8">Now
+        <!-- <a href="" class="w-48 text-white text-xl hover:text-indigo-500 font-semibold underline underline-offset-8">Now
           Showing</a>
         <a href="" class="w-48 text-white text-xl hover:text-indigo-500 font-semibold underline underline-offset-8">Coming
-          soon</a>
+          soon</a> -->
       </div>
       <div class="w-full grid lg:grid-cols-4 md:grid-cols-2 grid-rows gap-8 my-10">
         <div className="w-full grid mb-5 rounded-md shadow-md hover:bg-gray-700/10" id="app"
@@ -14,7 +14,7 @@
             <router-link :to="`/detail/${item.id}`">
               <div class="w-full py-5 flex flex-col gap-4 text-white justify-center items-center">
                  <!-- add path photo -->
-                <img class="w-72 h-96 rounded" :src="`http://localhost:3000/${item.image}`" alt="Image" />
+                <img class="w-72 h-96 rounded" :src="`http://44.205.53.190:3000/${item.image}`" alt="Image" />
                 <p class="flex flex-col gap-3">
                   <span class="font-bold text-left tracking-wide">
                     {{ item.name }}
@@ -59,7 +59,7 @@ export default {
   },
   beforeCreate() {
     axios
-      .get('http://localhost:3000/getAllConcert')
+      .get('http://44.205.53.190:3000/getAllConcert')
       .then((res) => {
         this.namelist = res.data;
       })

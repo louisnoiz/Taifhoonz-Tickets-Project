@@ -48,7 +48,7 @@ export default {
         password: this.password,
       };
 
-      axios.post('http://localhost:3000/login', data)
+      axios.post('http://44.205.53.190:3000/login', data)
         .then((res) => {
           console.log(res);
           const token = res.data.token;

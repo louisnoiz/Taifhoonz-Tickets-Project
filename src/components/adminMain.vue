@@ -21,9 +21,9 @@
                     <router-link :to="`/edit/${item.id}`">
                         <div class="w-full py-5 flex flex-col gap-4 justify-center items-center">
                             <div class="bg-cover bg-center w-auto h-96">
-                                <div class="w-72 h-72"><img :src="`http://localhost:3000/${item.image}`" alt=""/></div>
+                                <div class="w-72 h-72"><img :src="`http://44.205.53.190:3000/${item.image}`" alt=""/></div>
                             </div>
-                            <div class="flex flex-col gap-3 px-11">
+                            <div class="flex flex-col gap-3 px-11 mt-7">
                                 <span class="font-bold text-left">
                                     {{ item.name }}
                                 </span>
@@ -59,7 +59,7 @@ export default {
     },
     mounted() {
         axios
-            .get('http://localhost:3000/getAllConcert')
+            .get('http://44.205.53.190:3000/getAllConcert')
             .then((res) => {
                 this.namelist = res.data;
             })
@@ -67,7 +67,7 @@ export default {
     methods: {
         deleteConcert(id) {
             axios
-                .delete(`http://localhost:3000/delConcertById/${id}`)
+                .delete(`http://44.205.53.190:3000/delConcertById/${id}`)
                 .then((res) => {
                     console.log(res)
                 }).catch(err => {

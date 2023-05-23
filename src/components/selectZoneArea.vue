@@ -154,14 +154,14 @@ export default {
     beforeCreate() {
         const id = this.$route.params.concertId
         axios
-            .get("http://localhost:3000/getConcertById/" + id)
+            .get("http://44.205.53.190:3000/getConcertById/" + id)
             .then((res) => {
                 this.concert = res.data;
             })
             .catch((err) => {
                 console.log(err);
             });
-        axios.get("http://localhost:3000/getZoneByConcertId/" + id)
+        axios.get("http://44.205.53.190:3000/getZoneByConcertId/" + id)
             .then((res) => {
                 this.Zones = res.data.slice().reverse();
             })
@@ -177,7 +177,7 @@ export default {
         buy() {
             const token = localStorage.getItem("token");
             const decoded = jwtDecode(token);
-            axios.post("http://localhost:3000/createTicket", {
+            axios.post("http://44.205.53.190:3000/createTicket", {
                 concertId: this.$route.params.concertId,
                 roundId: this.$route.params.roundId,
                 zoneId: this.selectedZone.id,

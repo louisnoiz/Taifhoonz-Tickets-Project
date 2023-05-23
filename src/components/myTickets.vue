@@ -79,7 +79,7 @@ export default {
             const token = localStorage.getItem('token');
             const decoded = jwtDecode(token);
             this.id = decoded.payload.id;
-            axios.get(`http://localhost:3000/getTicketByUserId/${decoded.payload.id}`)
+            axios.get(`http://44.205.53.190:3000/getTicketByUserId/${decoded.payload.id}`)
                 .then((res) => {
                     this.ticket = res.data;
                 })

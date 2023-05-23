@@ -188,15 +188,15 @@ export default {
     beforeCreate() {
         const id = this.$route.params.concertId
         axios
-            .get("http://localhost:3000/getConcertById/" + id)
+            .get("http://44.205.53.190:3000/getConcertById/" + id)
             .then((res) => {
                 this.concert = res.data;
                 this.concert.dateStart = moment(this.concert.dateStart).format('YYYY-MM-DD');
                 this.concert.dateEnd = moment(this.concert.dateEnd).format('YYYY-MM-DD');
-                this.filePreview = `http://localhost:3000/${this.concert.image}`
+                this.filePreview = `http://44.205.53.190:3000/${this.concert.image}`
             })
 
-        axios.get("http://localhost:3000/getRoundByConcertId/" + id)
+        axios.get("http://44.205.53.190:3000/getRoundByConcertId/" + id)
             .then((res) => {
                 this.rounds = res.data;
                 this.rounds.map((item) => {
@@ -256,7 +256,7 @@ export default {
             formData.append('dateEnd', this.concert.dateEnd);
             formData.append('artist', this.concert.artist);
             formData.append('rounds', JSON.stringify(this.rounds));
-            axios.put("http://localhost:3000/updateConcert/" + this.$route.params.concertId, formData)
+            axios.put("http://44.205.53.190:3000/updateConcert/" + this.$route.params.concertId, formData)
                 .then((res) => {
                     console.log(res.data)
                 })

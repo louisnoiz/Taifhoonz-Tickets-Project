@@ -134,7 +134,7 @@ export default {
         };
     },
     beforeCreate() {
-        axios.get('http://localhost:3000/getPaymentById/' + this.$route.params.paymentId)
+        axios.get('http://44.205.53.190:3000/getPaymentById/' + this.$route.params.paymentId)
             .then((res) => {
                 this.all = res.data.Ticket[0];
             });
@@ -162,7 +162,7 @@ export default {
         },
         confirm(){
             this.handleConfirm = true
-            axios.patch('http://localhost:3000/updatePayment/' + this.$route.params.paymentId, {
+            axios.patch('http://44.205.53.190:3000/updatePayment/' + this.$route.params.paymentId, {
                 status: "COMPLETE",
             })
         }

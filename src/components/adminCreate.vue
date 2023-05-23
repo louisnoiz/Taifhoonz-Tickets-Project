@@ -183,7 +183,7 @@ export default {
             formData.append('artist', this.artist);
             formData.append('rounds', JSON.stringify(this.rounds));
 
-            axios.post('http://localhost:3000/createConcert', formData)
+            axios.post('http://44.205.53.190:3000/createConcert', formData)
                 .then(res => {
                     console.log(res);
                 }).catch(err => {
