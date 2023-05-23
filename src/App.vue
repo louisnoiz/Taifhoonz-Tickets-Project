@@ -145,11 +145,11 @@ export default {
     return {
       modal: false,
       modalNotify: false,
-      id:"",
+      id: "",
       fullname: "",
       email: "",
       username: "",
-      notification:null,
+      notification: null,
       testNameConcert: [
         { name: "something 1" },
         { name: "something 2" },
@@ -161,16 +161,8 @@ export default {
       ]
     };
   },
-  beforeCreate() {
-    if (localStorage.getItem("token")) {
-      const token = localStorage.getItem("token");
-      const decoded = jwtDecode(token);
-      this.username = decoded.payload.username;
-      this.fullname = decoded.payload.fullName;
-      this.email = decoded.payload.email;
-      console.log(decoded);
-      this.onAuthChange();
-    }
+  mounted() {
+    this.onAuthChange();
   },
   methods: {
     logout() {
@@ -191,9 +183,9 @@ export default {
         this.GetNotification();
       }
     },
-    GetNotification(){
+    GetNotification() {
       axios.get('http://localhost:3000/getAllNotification')
-      .then((res) => {
+        .then((res) => {
           // console.log(res);
           this.notification = res.data
           console.log(this.notification);
