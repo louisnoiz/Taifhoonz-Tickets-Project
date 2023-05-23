@@ -5,16 +5,16 @@
                 <label class="text-2xl text-white font-semibold tracking-wide">My Tickets</label>
                 <div class="w-full mb-5 border-b border-gray-300"></div>
                 <div class="w-full flex flex-col gap-8 justify-center items-center">
-                    <div class="w-8/12 rounded p-5 flex flex-col gap-4" :style="cssProps" v-for="item, index in namelist"
+                    <div class="w-8/12 rounded p-5 flex flex-col gap-4" :style="cssProps" v-for="item, index in ticket"
                         :key="index">
                         <div class="w-full bg-white rounded px-5 py-10 flex flex-row gap-4">
                             <div
                                 class="w-9/12 flex flex-col gap-3 pr-4 border-r-2 border-dashed border-[#284265] justify-center items-center text-center">
-                                <p class="text-2xl font-semibold tracking-wide">{{ item.name }}</p>
-                                <p class="text-gray-500">{{ item.local }}</p>
+                                <p class="text-2xl font-semibold tracking-wide">{{ item.concert.name }}</p>
+                                <p class="text-gray-500">{{ item.concert.location }}</p>
                                 <div class="w-10/12 border-y-2 py-2 border-dashed border-[#284265] flex flex-row gap-2">
                                     <div class="w-4/12 font-semibold text-lg p-2 flex justify-center items-center">
-                                        {{ item.date }}
+                                        {{ new Date(item.round.date).toDateString()}}
                                     </div>
                                     <div class="w-3/12 p-2 px-3 flex flex-col border-x-2 border-dashed border-[#284265]">
                                         <p class="text-lg font-semibold text-gray-500">ROUND</p>
@@ -22,7 +22,7 @@
                                     </div>
                                     <div class="w-5/12 p-2 pr-3 flex flex-col">
                                         <p class="text-lg font-semibold text-gray-500">TIME</p>
-                                        <p class="text-2xl font-semibold">{{ item.time }}</p>
+                                        <p class="text-2xl font-semibold">{{ new Date(item.round.startTime).toTimeString().slice(0, 5)}} - {{ new Date(item.round.endTime).toTimeString().slice(0, 5)}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -45,10 +45,9 @@
                                     <p>Taifhoonz Tickets</p>
                                 </div>
                                 <div class="flex flex-col gap-1 mb-3">
-                                    <p class="text-center text-lg font-semibold">TICKET NO.</p>
-                                    <p class="text-center">E12V443</p>
+                                    <p class="text-center text-lg font-semibold">{{item.count}} TICKET</p>
                                 </div>
-                                <p class="text-center text-3xl text-orange-400 font-semibold">500 THB</p>
+                                <p class="text-center text-3xl text-orange-400 font-semibold">{{item.price}} THB</p>
                             </div>
                         </div>
                     </div>
@@ -156,21 +155,16 @@ export default {
         };
     },
     methods: {
-        viewTicket(id) {
-            axios.get(`http://localhost:3000/getTicketByUserId/${id}`)
-                .then((res) => {
-                    this.ticket = res.data;
-                    console.log(this.ticket);
-                })
-        }
     },
-    mounted() {
+    beforeCreate() {
         if (localStorage.getItem('token')) {
             const token = localStorage.getItem('token');
             const decoded = jwtDecode(token);
             this.id = decoded.payload.id;
-            this.ticket = this.viewTicket(this.id);
-            console.log(this.ticket);
+            axios.get(`http://localhost:3000/getTicketByUserId/${decoded.payload.id}`)
+                .then((res) => {
+                    this.ticket = res.data;
+                })
         }
     },
 };

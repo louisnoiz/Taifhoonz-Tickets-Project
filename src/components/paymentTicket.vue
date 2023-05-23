@@ -33,18 +33,17 @@
                     <div class="flex flex-col gap-4 text-left">
                         <div class="w-full flex flex-row items-center">
                             <p class="w-11/12 font-semibold underline underline-offset-4">Ticket Details</p>
-                            <p class="w-1/12 text-end mt-1">X 1</p>
+                            <p class="w-1/12 text-end mt-1">X {{ all.count }}</p>
                         </div>
-                        <p class="text-2xl tracking-wide font-semibold">TMD's Something Concert</p>
-                        <p class="text-xl tracking-wide">Name : Sarun Viwatborvornwong</p>
+                        <p class="text-2xl tracking-wide font-semibold">{{all.concert.name}}</p>
+                        <p class="text-xl tracking-wide">Name : {{all.user.fullName}}</p>
                         <div class="w-full flex flex-row gap-4 items-center">
-                            <p>Date : 24 เมษายน 2566</p>
-                            <div class="text-lg tracking-wide border text-center px-3 rounded-xl">Round 1</div>
+                            <p>Date : {{ new Date(all.round.date).toDateString()}}</p>
                         </div>
-                        <p>Time : 15.00 - 17.00</p>
-                        <p>Zone : D (Purple)</p>
+                        <p>Time : {{ new Date(all.round.startTime).toTimeString().slice(0, 5)}} - {{ new Date(all.round.endTime).toTimeString().slice(0, 5)}}</p>
+                        <p>{{ }}</p>
                         <div class="border-t py-3 text-right">
-                            <p class="text-2xl">Total <span class="text-yellow-400">550 THB</span></p>
+                            <p class="text-2xl">Total <span class="text-yellow-400">{{all.price}} THB</span></p>
                         </div>
                     </div>
                 </div>
@@ -112,7 +111,7 @@
                     <router-link to="/detail"
                         class="w-1/2 mt-5 text-center px-10 py-4 bg-gray-500 tracking-wide text-white font-bold rounded hover:bg-gray-600">
                         Cancel </router-link>
-                    <button @click="() => handleConfirm = true"
+                    <button @click="confirm()"
                         class="w-1/2 mt-5 text-center px-10 py-4 bg-red-500 tracking-wide text-white font-bold rounded hover:bg-red-600">
                         Confirm
                     </button>
@@ -123,14 +122,25 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
     // components: { FileComponent },
     data() {
         return {
             filePreview: '',
+            ticket: {},
+            all: {},
             fileName: '',
             handleConfirm: false
         };
+    },
+    beforeCreate() {
+        axios.get('http://localhost:3000/getPaymentById/' + this.$route.params.paymentId)
+            .then((res) => {
+                this.all = res.data.Ticket[0];
+            });
+
     },
     methods: {
         onFileChange($event) {
@@ -152,6 +162,12 @@ export default {
                 console.log("file :" + file)
             }
         },
+        confirm(){
+            this.handleConfirm = true
+            axios.patch('http://localhost:3000/updatePayment/' + this.$route.params.paymentId, {
+                status: "COMPLETE",
+            })
+        }
     },
 };
 </script>
