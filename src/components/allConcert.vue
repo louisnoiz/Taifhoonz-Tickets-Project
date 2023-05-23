@@ -1,5 +1,5 @@
 <template class="w-full h-screen">
-  <div class="w-full h-screen bg-gradient-to-b from-[#2c2c38] via-[#284265] to-[#2c2c38]">
+  <div id="wrapper" class="w-full h-screen bg-gradient-to-b from-[#2c2c38] via-[#284265] to-[#2c2c38]">
     <div class="container mx-auto flex flex-col justify-center items-center">
       <div class="w-full flex justify-left pt-10">
         <a href="" class="w-48 text-white text-xl hover:text-indigo-500 font-semibold underline underline-offset-8">Now
