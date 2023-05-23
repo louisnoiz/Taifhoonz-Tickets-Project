@@ -142,7 +142,7 @@ export default {
           });
       }
       else {
-        // alert('Please fill in all the fields');
+        alert('Please fill in all the fields');
         this.$router.push('/signuppage');
       }
 

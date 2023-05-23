@@ -35,7 +35,7 @@ const routes = [
     },
   },
   {
-    path: "/selectzone/:concertId",
+    path: "/selectzone/:concertId/:roundId",
     name: "zoneArea",
     component: () => import("../components/selectZoneArea.vue"),
     meta: {
@@ -43,7 +43,7 @@ const routes = [
     },
   },
   {
-    path: "/payment",
+    path: "/payment/:paymentId",
     name: "buyTicket",
     component: () => import("../components/paymentTicket.vue"),
     meta: {

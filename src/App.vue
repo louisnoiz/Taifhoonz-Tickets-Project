@@ -158,7 +158,7 @@ export default {
       ]
     };
   },
-  mounted() {
+  beforeCreate() {
     if (localStorage.getItem("token")) {
       const token = localStorage.getItem("token");
       const decoded = jwtDecode(token);

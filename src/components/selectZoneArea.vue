@@ -15,7 +15,7 @@
                             <img v-if="index == 1" class="colorZone" src="../assets/zpnebluecolor.png" alt="">
                             <img v-if="index == 2" class="colorZone" src="../assets/zonepurple.png" alt="">
                             <img v-if="index == 3" class="colorZone" src="../assets/zoneorange.png" alt="">
-                            <p>&ensp; {{zone.name}} : {{zone.price}} THB</p>
+                            <p>&ensp; {{ zone.name }} : {{ zone.price }} THB</p>
                         </div>
                     </div>
                     <div class="ZoneAreaSelectBox relative mt-8 ">
@@ -23,7 +23,7 @@
                             <button @click="isOpen = !isOpen" type="button"
                                 class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-2 py-4 bg-red-500 font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 id="Zones-menu" aria-haspopup="true" aria-expanded="true">
-                                {{ selectedZone ? selectedZone.name + ' : ' + selectedZone.price + ' THB': 'Select Zone' }}
+                                {{ selectedZone ? selectedZone.name + ' : ' + selectedZone.price + ' THB' : 'Select Zone' }}
                                 <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                     fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd"
@@ -40,15 +40,15 @@
                                 <a v-for="zone in Zones" :key="zone.id" @click="selectZone(zone)"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                     role="menuitem">
-                                    {{zone.name}} : {{zone.price}} THB
+                                    {{ zone.name }} : {{ zone.price }} THB
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="flex justify-end items-center mt-10">
-                        <router-link to="/payment" v-if="selectedZone"
+                        <a v-if="selectedZone" @click="buy()"
                             class="w-48 rounded-md border border-gray-300 shadow-sm px-6 py-3 bg-[#FE862D] font-bold text-white hover:bg-[#e16f1a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Buy
-                            Ticket -></router-link>
+                            Ticket -></a>
                     </div>
                 </div>
             </div>
@@ -139,6 +139,7 @@
 </template>
 <script>
 import axios from 'axios';
+import jwtDecode from "jwt-decode";
 // import moment from 'moment';
 
 export default {
@@ -147,9 +148,10 @@ export default {
             isOpen: false,
             selectedZone: null,
             Zones: [],
+            count: 1,
         };
     },
-    mounted() {
+    beforeCreate() {
         const id = this.$route.params.concertId
         axios
             .get("http://localhost:3000/getConcertById/" + id)
@@ -161,7 +163,7 @@ export default {
             });
         axios.get("http://localhost:3000/getZoneByConcertId/" + id)
             .then((res) => {
-                this.Zones = res.data;
+                this.Zones = res.data.slice().reverse();
             })
             .catch((err) => {
                 console.log(err);
@@ -172,10 +174,23 @@ export default {
             this.selectedZone = zone;
             this.isOpen = false;
         },
-        buy(){
-            const id = this.$route.params.concertId
-            const zone = this.selectedZone.value
-            this.$router.push({ name: 'payment', params: { concertId: id, zone: zone } })
+        buy() {
+            const token = localStorage.getItem("token");
+            const decoded = jwtDecode(token);
+            axios.post("http://localhost:3000/createTicket", {
+                concertId: this.$route.params.concertId,
+                roundId: this.$route.params.roundId,
+                zoneId: this.selectedZone.id,
+                userId: decoded.payload.id,
+                price: this.selectedZone.price,
+                count: this.count,
+            })
+                .then((res) => {
+                    this.$router.push({ name: 'buyTicket', params: { paymentId: res.data.paymentId } })
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
     },
 };

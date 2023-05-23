@@ -29,7 +29,11 @@
             <button @click="isOpen = !isOpen" type="button"
               class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-6 py-4 bg-red-500 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               id="rounds-menu" aria-haspopup="true" aria-expanded="true">
-              {{ selectedRound.label }}
+              <p v-if="selectedRound">
+                {{ new Date(selectedRound.date).toDateString() }} ( {{ new
+                  Date(selectedRound.startTime).toTimeString().slice(0, 5) }} - {{ new
+    Date(selectedRound.endTime).toTimeString().slice(0, 5) }})
+              </p>
               <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                 aria-hidden="true">
                 <path fill-rule="evenodd"
@@ -43,20 +47,20 @@
             class="right-0 mt-2 w-full rounded-md shadow-lg bg-red-500 ring-1 ring-black ring-opacity-5 " role="menu"
             aria-orientation="vertical" aria-labelledby="rounds-menu">
             <div class="py-1" role="none">
-              <a v-for="(round, index) in rounds" :key="round.id" @click="selectRound(round.id)"
+              <a v-for="(round, index) in rounds" :key="round.id" @click="selectRound(round, index+1)"
                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">
                 Round {{ index + 1 }} - {{ new Date(round.date).toDateString() }} ( {{ new
-                  Date(round.startTime).toTimeString().slice(0, 5) }} - {{ new Date(round.endTime).toTimeString().slice(0, 5)
-  }})
+                  Date(round.startTime).toTimeString().slice(0, 5) }} - {{ new Date(round.endTime).toTimeString().slice(0,
+    5) }})
               </a>
             </div>
           </div>
         </div>
         <div v-show="checkValueRound" class="flex justify-end items-center mt-3">
-          <router-link :to="{ name: 'zoneArea', params: { concertId: this.$route.params.concertId } }"
+          <a @click="sentSelectZone"
             class="w-48 rounded-md border border-gray-300 shadow-sm px-6 py-3 bg-[#FE862D] font-bold text-white hover:bg-[#e16f1a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Select
             Zone
-            -></router-link>
+            -></a>
         </div>
       </div>
     </div>
@@ -77,7 +81,7 @@ export default {
       checkValueRound: false
     };
   },
-  mounted() {
+  beforeCreate() {
     const id = this.$route.params.concertId
     axios
       .get("http://localhost:3000/getConcertById/" + id)
@@ -101,7 +105,8 @@ export default {
       const date = moment(dateString);
       return date.format('DD-MM-YYYY');
     },
-    selectRound(round) {
+    selectRound(round, index) {
+      round.index = index;
       this.selectedRound = round;
       this.isOpen = false;
       this.checkValueRound = true
@@ -115,7 +120,7 @@ export default {
     //   }
     // },
     sentSelectZone() {
-      this.$router.push({ name: 'zoneArea', params: { concertId: this.$route.params.concertId }, body: { round: this.selectedRound } })
+      this.$router.push({ name: 'zoneArea', params: { concertId: this.$route.params.concertId, roundId: this.selectedRound.id } })
     }
   },
 };
