@@ -12,11 +12,6 @@ const routes = [
     },
   },
   {
-    path: "/helloworld",
-    name: "Hello World",
-    component: () => import("../components/HelloWorld.vue"),
-  },
-  {
     path: "/loginpage",
     name: "loginPage",
     component: () => import("../components/loginPage.vue"),
@@ -75,7 +70,7 @@ const routes = [
     //   },
   },
   {
-    path: "/edit",
+    path: "/edit/:concertId",
     name: "Edit",
     component: () => import("../components/adminEdit.vue"),
     // meta: {
